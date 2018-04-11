@@ -6,7 +6,7 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, {token: action.payload})
 
 		case 'AUTHENTICATE_USER': 
-			return {action.authenticated ? state : Object.assign({}, state, {token: false})} 
+			return action.authenticated ? state : Object.assign({}, state, {token: false}) 
 
 		default:
 			return state
