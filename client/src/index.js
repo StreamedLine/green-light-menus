@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducer from './reducers/root-reducer';
+import reducer from './reducers/rootReducer';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -15,7 +15,7 @@ const store = createStore(reducer, composeEnhancers(
 
 ReactDOM.render(
 	<Provider>
-		<App />
+		<App store={store} />
 	</Provider>,
 	document.getElementById('root')
 );
