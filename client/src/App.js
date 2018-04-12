@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
-//import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-//import { fetchToken } from './actions/userActions'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { fetchToken, logoutUser } from './actions/userActions'
+import UserLoginForm from './components/users/UserLoginForm'
 import logo from './logo.svg';
 import './App.css';
 
-const loginForm = () => {
-  return (
-    <form onSubmit>
-      Email <input type="text" value="email" name="email" />
-      <br/>
-      Password <input type="password" />
-      <br/>
-      <input type="submit" value="Login" />
-    </form>
-  )
-}
+
 
 class App extends Component {
-
-  //```DEV
-    // componentDidMount() {
-    //   this.props.fetchToken('dave@dave.com', 'password')
-    // }
-  //^^^DEV
-
   render() {
     return (
       <Router>
@@ -34,10 +18,13 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to the Future</h1>
             <Link to="/login">Login</Link>
+            <Link to="/logout">logout</Link>
           </header>
         
 
-          <Route path="/login" render={loginForm} />
+          <Route path="/login" render={() => (<UserLoginForm fetchToken={this.props.fetchToken} />)} /> 
+          <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
+          
         </div>
       </Router>  
     );
@@ -45,14 +32,15 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {token: state.token}
+  return {token: state.token, loggedIn: state.loggedIn}
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchToken, logoutUser}, dispatch)
+}
 
-//DEV ONLY BELOW
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({fetchToken: fetchToken}, dispatch)
-// }
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
 
 
