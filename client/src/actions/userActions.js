@@ -20,6 +20,10 @@ export function fetchToken({email, password}) {
 	}
 }
 
-export function logoutUser(dispatch) {
-	dispatch({type: 'LOGOUT_USER'})
+export function createUser({username, email, password}) {
+	
+}
+
+export function logoutUser() {
+	return {type: 'LOGOUT_USER'}
 }

@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default class LoginForm extends React.Component {
+export default class CreateForm extends React.Component {
 	constructor() {
 		super();
 
 		this.state = {
+			username: '',
 			email: '',
 			password: ''
 		}
@@ -17,13 +18,17 @@ export default class LoginForm extends React.Component {
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 
-		this.props.fetchToken(this.state)
+		this.props.CreateUser(this.state)
 	}
 
 	render() {
 	  return (
   	  <form onSubmit={this.handleOnSubmit}>
-  	  	<h3>Login</h3>
+  	  	<h3>Create Account</h3> 
+  	  	<p>
+	    	  <label htmlFor="username">username</label>
+  	    	<input type="text" value={this.state.username} name="username" onChange={this.handleOnChange} />
+	  	  </p>
     		<p>
 	    	  <label htmlFor="email">email</label>
   	    	<input type="text" value={this.state.email} name="email" onChange={this.handleOnChange} />
@@ -33,7 +38,7 @@ export default class LoginForm extends React.Component {
 	      	<input type="password" value={this.state.password} name="password" onChange={this.handleOnChange} />
 	      </p>
 	      <br/>
-	      <input type="submit" value="Login" />
+	      <input type="submit" value="Create Account" />
 	    </form>
 	  )
 	}
