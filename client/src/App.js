@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { fetchToken } from './actions/userActions'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+//import { fetchToken } from './actions/userActions'
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
 
+  //```DEV
+    // componentDidMount() {
+    //   this.props.fetchToken('dave@dave.com', 'password')
+    // }
+  //^^^DEV
 
   render() {
     return (
@@ -14,7 +21,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.props.token}
         </p>
       </div>
     );
@@ -22,3 +29,14 @@ class App extends Component {
 }
 
 export default App;
+
+//DEV ONLY BELOW
+// const mapStateToProps = (state) => {
+//   return {token: state.token}
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({fetchToken: fetchToken}, dispatch)
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
