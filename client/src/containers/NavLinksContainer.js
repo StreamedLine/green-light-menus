@@ -23,7 +23,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({logoutUser}, dispatch)
+  return bindActionCreators({ logoutUser }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavLinksContainer);

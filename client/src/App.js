@@ -7,6 +7,7 @@ import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
 import BasicAbout from './components/about/BasicAbout'
+import RestaurantsContainer from './containers/RestaurantsContainer'
 import './App.css';
 
 
@@ -23,10 +24,12 @@ class App extends Component {
           </header>
           <div className="main">
             <Route exact path="/" render={() => (<h2>Welcome To Greenlight Menus</h2> )} /> 
-            <Route path="/register" component={({history}) => <UserCreateForm createUser={this.props.createUser} history={history} />} /> 
+            <Route path="/register" component={({history}) => (<UserCreateForm createUser={this.props.createUser} history={history} />)} /> 
             <Route path="/login" component={({history}) => (<UserLoginForm fetchToken={this.props.fetchToken} history={history} />)} /> 
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
             <Route exact path="/about" render={BasicAbout} />
+
+            <Route path="/restaurants" component={RestaurantsContainer} />
           </div>
         </div>
       </Router>  
