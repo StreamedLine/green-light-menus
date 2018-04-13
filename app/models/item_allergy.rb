@@ -1,0 +1,2 @@
+class ItemAllergy < ApplicationRecord
+end
