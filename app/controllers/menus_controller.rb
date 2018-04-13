@@ -10,7 +10,9 @@ class MenusController < ApplicationController
   end
 
   def create
-    menu = Menu.new(menu_params)
+    restaurant = Restaurant.find(params[:restaurant_id])
+    menu = restaurant.menus.new(menu_params) if restaurant
+    binding.pry
     if menu.save
       render json: menu
     else
@@ -36,6 +38,6 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:id, :title, :menu_items => [:title, :description, :user_contributed, :menu_id])
+    params.require(:menu).permit(:id, :title, :menuItems_attributes => [:title, :description, :user_contributed, :menu_id])
   end
 end

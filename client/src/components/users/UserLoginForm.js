@@ -26,7 +26,7 @@ export default class LoginForm extends React.Component {
   	  	<h3>Login</h3>
     		<p>
 	    	  <label htmlFor="email">email</label>
-  	    	<input type="text" value={this.state.email} name="email" onChange={this.handleOnChange} />
+  	    	<input type="email" value={this.state.email} name="email" onChange={this.handleOnChange} />
 	  	  </p>
 	      <p>
 	      	<label htmlFor="password">password</label>

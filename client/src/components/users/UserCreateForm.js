@@ -26,12 +26,12 @@ export default class CreateForm extends React.Component {
   	  <form onSubmit={this.handleOnSubmit}>
   	  	<h3>Create Account</h3> 
   	  	<p>
-	    	  <label htmlFor="username">username</label>
-  	    	<input type="text" value={this.state.username} name="username" onChange={this.handleOnChange} />
-	  	  </p>
-    		<p>
 	    	  <label htmlFor="email">email</label>
   	    	<input type="email" value={this.state.email} name="email" onChange={this.handleOnChange} />
+	  	  </p>
+  	  	<p>
+	    	  <label htmlFor="username">username</label>
+  	    	<input type="text" value={this.state.username} name="username" onChange={this.handleOnChange} />
 	  	  </p>
 	      <p>
 	      	<label htmlFor="password">password</label>

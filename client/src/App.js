@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Redirect, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchToken, logoutUser, createUser } from './actions/userActions';
+import { fetchToken, createUser } from './actions/userActions';
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
@@ -19,7 +19,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Link to="/"><h1>Greenlight Menus</h1></Link>
-            <NavLinksContainer loggedIn={this.props.loggedIn} logoutUser={this.props.logoutUser} /> 
+            <NavLinksContainer /> 
           </header>
           <div className="main">
             <Route exact path="/" render={() => (<h2>Welcome To Greenlight Menus</h2> )} /> 
@@ -35,11 +35,11 @@ class App extends Component {
 }
 
 const mapStateToProps = ({userReducer}) => {
-  return {token: userReducer.token, loggedIn: userReducer.loggedIn}
+  return {token: userReducer.token}
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, logoutUser, createUser}, dispatch)
+  return bindActionCreators({fetchToken, createUser}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   delete '/user/:id'       => 'users#destroy'
 
   #restaurant actions
-  resources :restaurants, only: [:index, :show, :create, :update, :delete] do 
-    resources :menus, only: [:index, :show, :create, :update, :delete]
+  resources :restaurants, only: [:index, :show, :create, :update, :destroy] do 
+    resources :menus, only: [:index, :show, :create, :update, :destroy]
   end
 
   resources :menus, only: [:show] do 
-    resources :menu_items, only: [:index, :show, :create, :update, :delete]
+    resources :menu_items, only: [:index, :show, :create, :update, :destroy]
   end
 end
