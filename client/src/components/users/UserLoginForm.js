@@ -16,8 +16,8 @@ export default class LoginForm extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-
 		this.props.fetchToken(this.state)
+		this.props.history.push('/')
 	}
 
 	render() {

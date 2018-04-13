@@ -17,8 +17,8 @@ export default class CreateForm extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-
-		this.props.CreateUser(this.state)
+		this.props.createUser(this.state)
+		this.props.history.push('/login')
 	}
 
 	render() {
@@ -31,7 +31,7 @@ export default class CreateForm extends React.Component {
 	  	  </p>
     		<p>
 	    	  <label htmlFor="email">email</label>
-  	    	<input type="text" value={this.state.email} name="email" onChange={this.handleOnChange} />
+  	    	<input type="email" value={this.state.email} name="email" onChange={this.handleOnChange} />
 	  	  </p>
 	      <p>
 	      	<label htmlFor="password">password</label>

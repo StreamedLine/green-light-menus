@@ -1,5 +1,3 @@
-import { API_URL } from '../constants';
-
 export function fetchToken({email, password}) {
 	return dispatch => {
 		return fetch("http://localhost:3000/user_token", {
@@ -21,7 +19,23 @@ export function fetchToken({email, password}) {
 }
 
 export function createUser({username, email, password}) {
-	
+	return dispatch => {
+		return fetch("http://localhost:3000/users/create", {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+		    user: {
+		    	username,	
+		      email,
+		      password
+		    }
+		  })
+    })
+			.then(res => res.json())
+	}
 }
 
 export function logoutUser() {

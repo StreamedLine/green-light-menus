@@ -8,6 +8,10 @@
   color: white;
 }
 
+.App-header h1 {
+  color: green;
+}
+
 .App-title {
   font-size: 1.5em;
 }
@@ -19,6 +23,7 @@
 .App-header a {
   margin: 5px;
   color: white;
+  display: inline-block;
 }
 
 .App-header a:active {
@@ -36,6 +41,10 @@
 
 .App form p input {
   font-size: 1.1em
+}
+
+.aboutPage ul {
+  list-style: none;
 }
 
 @keyframes App-logo-spin {
