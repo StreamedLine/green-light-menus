@@ -10,7 +10,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = Restaurant.new(restaurant_params)
+    user = User.find_by(username: params[:username])
+    restaurant = user.restaurants.new(restaurant_params) if user
     if restaurant.save
       render json: restaurant
     else
@@ -39,3 +40,5 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:id, :name, :description, :phone, :address, :zip, :website, :owner)
   end
 end
+
+
