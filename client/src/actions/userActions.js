@@ -14,8 +14,31 @@ export function fetchToken({email, password}) {
 		  })
     })
 			.then(res => res.json())
-			.then(res => dispatch({type: 'FETCH_TOKEN', payload: res.jwt || false}))
+			.then(res => {
+				if (!res.jwt) dispatch({type: 'FETCH_TOKEN', payload: {jwt: false}});
+				fetch("http://localhost:3000/auth", {
+					headers: {
+						"Authorization": `Bearer ${res.jwt}`
+					}
+				})
+					.then(response => response.json())
+					.then(json => dispatch({type: 'FETCH_TOKEN', payload: {jwt: res.jwt, username: json.username}}))
+				
+			})
 	}
+}
+
+export function authenticateUser(token) {
+	return dispatch => {
+		if (!token) dispatch({type: 'FETCH_TOKEN', payload: {jwt: false}});
+		fetch("http://localhost:3000/auth", {
+			headers: {
+				"Authorization": `Bearer ${token}`
+			}
+		})
+			.then(response => response.json())
+			.then(json => dispatch({type: 'FETCH_TOKEN', payload: {jwt: token, username: json.username}}))
+		}
 }
 
 export function createUser({username, email, password}) {
