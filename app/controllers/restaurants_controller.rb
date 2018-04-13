@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = restaurant.new(restaurant_params)
+    restaurant = Restaurant.new(restaurant_params)
     if restaurant.save
       render json: restaurant
     else
@@ -19,7 +19,7 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    restaurant = restaurant.find(restaurant_params[:id])
+    restaurant = Restaurant.find(restaurant_params[:id])
     if restaurant.update(restaurant_params)
       render json: restaurant
     else
@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    restaurant = restaurant.find(restaurant_params[:id])
+    restaurant = Restaurant.find(restaurant_params[:id])
     restaurant.destroy
     render json: {notice: "Restaurant removed."}
   end
