@@ -20,3 +20,7 @@ export function fetchFull(id) {
 			});
 	}
 }
+
+export function createRestaurant({}) {
+	return dispatch => dispatch({type: 'CREATE_RESTAURANT'})
+}

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
+import { createRestaurant } from './actions/restaurantActions'
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
@@ -31,7 +32,7 @@ class App extends Component {
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
             <Route exact path="/about" render={BasicAbout} />
 
-            <Route path="/create_restaurant" component={CreateRestaurant} />
+            <Route path="/create_restaurant" component={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} />)} />
 
             <Route exact path="/restaurants" component={RestaurantsContainer} />
             <Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
@@ -47,7 +48,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, createUser}, dispatch)
+  return bindActionCreators({fetchToken, createUser, createRestaurant}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
