@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { fetchRestaurants } from '../actions/restaurantActions';
 import RestaurantList from './../components/restaurants/RestaurantsList';
-import Restaurant from './../components/restaurants/Restaurant'
+
 
 class RestaurantsContainer extends React.Component {
 	constructor(props) {
@@ -17,8 +17,6 @@ class RestaurantsContainer extends React.Component {
 		return (
 			<div>
 				<RestaurantList restaurants={this.props.restaurants} />
-
-				<Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
 			</div>
 		)
 	}

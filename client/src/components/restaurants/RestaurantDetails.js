@@ -9,6 +9,7 @@ export default class RestaurantDetails extends React.Component {
 			<div className='restaurantDetails'>
 				{restaurant &&
 					<div>
+						<h3>{restaurant.name}</h3>
 						<h4>Description</h4>
 						<p>{restaurant.description}</p>
 						<h4>Address</h4>

@@ -7,7 +7,10 @@ export default class UserLinks extends React.Component {
 			<div>
 				{
 					this.props.loggedIn
-					?	<Link to="/logout" onClick={this.props.logoutUser}>Logout</Link> 
+					?	<div>	
+							<Link to="/create_restaurant">Add Restaurant</Link>
+							<Link to="/logout" onClick={this.props.logoutUser}>Logout</Link> 
+						</div>
 					: <div>
 							<Link to="/register">Register</Link>
 							<Link to="/login">Login</Link>

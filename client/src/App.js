@@ -6,8 +6,10 @@ import { fetchToken, createUser } from './actions/userActions';
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
-import BasicAbout from './components/about/BasicAbout'
-import RestaurantsContainer from './containers/RestaurantsContainer'
+import BasicAbout from './components/about/BasicAbout';
+import RestaurantsContainer from './containers/RestaurantsContainer';
+import Restaurant from './components/restaurants/Restaurant';
+import CreateRestaurant from './components/restaurants/CreateRestaurant';
 import './App.css';
 
 
@@ -29,7 +31,10 @@ class App extends Component {
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
             <Route exact path="/about" render={BasicAbout} />
 
-            <Route path="/restaurants" component={RestaurantsContainer} />
+            <Route path="/create_restaurant" component={CreateRestaurant} />
+
+            <Route exact path="/restaurants" component={RestaurantsContainer} />
+            <Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
           </div>
         </div>
       </Router>  
