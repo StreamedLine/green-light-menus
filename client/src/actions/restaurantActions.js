@@ -6,10 +6,17 @@ export function fetchRestaurants() {
 	}
 }
 
-export function fetchRestaurant(id) {
+export function fetchFull(id) {
 	return (dispatch) => {
-		return fetch('http://localhost:3000/restaurant/' + id)
+		dispatch({type: 'SET_LOAD_STATUS', payload: true});
+		return fetch('http://localhost:3000/restaurants/' + id)
 			.then(res => res.json())
-			.then(json => dispatch({type: 'FETCH_RESTAURANT', payload: json }))
+			.then(json => { 
+				if (json.status === 404) {
+					json = false
+				}
+				dispatch({type: 'SET_LOAD_STATUS', payload: false});
+				return dispatch({type: 'FETCH_FULL', payload: json });
+			});
 	}
 }

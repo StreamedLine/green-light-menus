@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { fetchRestaurants, fetchRestaurant } from '../actions/restaurantActions';
+import { fetchRestaurants } from '../actions/restaurantActions';
 import RestaurantList from './../components/restaurants/RestaurantsList';
 import Restaurant from './../components/restaurants/Restaurant'
 
@@ -18,7 +18,7 @@ class RestaurantsContainer extends React.Component {
 			<div>
 				<RestaurantList restaurants={this.props.restaurants} />
 
-				<Route path="/restaurants/:id" render={({match}) => (<Restaurant id={match.params.id} fetchRestaurant={fetchRestaurants} />)} />
+				<Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
 			</div>
 		)
 	}
@@ -29,7 +29,7 @@ const mapStateToProps = ({restaurantReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchRestaurants, fetchRestaurant }, dispatch)
+  return bindActionCreators({ fetchRestaurants }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsContainer);
