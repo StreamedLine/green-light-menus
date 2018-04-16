@@ -20,7 +20,7 @@ export default class CreateRestaurant extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-		this.props.createRestaurant(this.state)
+		this.props.createRestaurant(this.state, this.props.username);
 		this.props.history.push('/') //should go to /addMenu
 	}
 
@@ -30,32 +30,32 @@ export default class CreateRestaurant extends React.Component {
 			<h3>Add Your Restaurant Below</h3>
 				<form onSubmit={this.handleOnSubmit} >
 					<p>
-						<label for="name">name</label>
+						<label htmlFor="name">name</label>
 						<input type="text" name="name" id="name" onChange={this.handleOnChange} /> 
 					</p>
 					
 					<p>
-						<label for="description">description</label>
+						<label htmlFor="description">description</label>
 						<input type="text" name="description" id="description" onChange={this.handleOnChange} /> 
 					</p>
 					
 					<p>
-						<label for="phone">phone</label>
+						<label htmlFor="phone">phone</label>
 						<input type="text" name="phone" id="phone" onChange={this.handleOnChange} /> 
 					</p>
 					
 					<p>
-						<label for="address">address</label>
+						<label htmlFor="address">address</label>
 						<input type="text" name="address" id="address" onChange={this.handleOnChange} /> 
 					</p>
 					
 					<p>
-						<label for="zip">zip</label>
+						<label htmlFor="zip">zip</label>
 						<input type="text" name="zip" id="zip" onChange={this.handleOnChange} /> 
 					</p>
 					
 					<p>
-						<label for="website">website</label>
+						<label htmlFor="website">website</label>
 						<input type="text" name="website" id="website" onChange={this.handleOnChange} /> 
 					</p>
 					<p>

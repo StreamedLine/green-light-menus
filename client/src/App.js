@@ -32,7 +32,7 @@ class App extends Component {
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
             <Route exact path="/about" render={BasicAbout} />
 
-            <Route path="/create_restaurant" component={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} />)} />
+            <Route path="/create_restaurant" component={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} username={this.props.username} />)} />
 
             <Route exact path="/restaurants" component={RestaurantsContainer} />
             <Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
@@ -44,7 +44,7 @@ class App extends Component {
 }
 
 const mapStateToProps = ({userReducer}) => {
-  return {token: userReducer.token}
+  return {token: userReducer.token, username: userReducer.username}
 }
 
 const mapDispatchToProps = (dispatch) => {

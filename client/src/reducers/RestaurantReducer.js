@@ -16,6 +16,10 @@ export default (state = initialState, action) => {
 		case 'SET_LOAD_STATUS':
 			return Object.assign({}, state, {loadingFull: action.payload})
 
+	  case 'CREATE_RESTAURANT':
+	  	const newState = Object.assign({}, state, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)})
+	  	return newState
+
 		default:
 			return state;
 	}

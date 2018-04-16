@@ -21,6 +21,20 @@ export function fetchFull(id) {
 	}
 }
 
-export function createRestaurant({}) {
-	return dispatch => dispatch({type: 'CREATE_RESTAURANT'})
+export function createRestaurant(restaurant, username) {
+	return dispatch => {
+		return fetch("http://localhost:3000/restaurants", {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+				restaurant,
+				username
+		  })
+    })
+			.then(res => res.json())
+			.then(json => dispatch({type: 'CREATE_RESTAURANT', payload: json}))
+	}
 }
