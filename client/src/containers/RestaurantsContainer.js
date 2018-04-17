@@ -1,10 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 import { fetchRestaurants } from '../actions/restaurantActions';
 import RestaurantList from './../components/restaurants/RestaurantsList';
-
+import Restaurant from './../components/restaurants/Restaurant';
 
 class RestaurantsContainer extends React.Component {
 	constructor(props) {

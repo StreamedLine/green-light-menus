@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchFull } from '../../actions/restaurantActions';
+import { Link } from 'react-router-dom';
 import RestaurantDetails from './RestaurantDetails';
 
 class Restaurant extends React.Component {
@@ -15,16 +16,27 @@ class Restaurant extends React.Component {
 	}
 
 	render() {
+		const currentRestaurant = this.props.cachedFullRestaurants.find(r => r.id == this.props.id);
+
 		return (
 			<div>
-				<RestaurantDetails restaurant={this.props.cachedFullRestaurants.find(r => r.id == this.props.id)} />
+				{this.props.loggedIn
+					?	<p>
+							<Link to={`/restaurants/${this.props.id}/add_menu`}>Add Menu Here</Link>
+						</p>
+					: <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />
+				}
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = ({restaurantReducer}) => {
-  return {cachedFullRestaurants: restaurantReducer.cachedFullRestaurants, loadingFull: restaurantReducer.loadingFull}
+const mapStateToProps = ({restaurantReducer, userReducer}) => {
+  return {
+  	cachedFullRestaurants: restaurantReducer.cachedFullRestaurants, 
+  	loadingFull: restaurantReducer.loadingFull,
+  	loggedIn: userReducer.loggedIn
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

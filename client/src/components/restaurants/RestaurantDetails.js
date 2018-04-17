@@ -1,21 +1,20 @@
 import React from 'react';
-import key from '../../private/google-key'
+import key from '../../private/google-key';
+import Menu from './Menu';
 
 export default class RestaurantDetails extends React.Component {
 	render() {
 		const restaurant = this.props.restaurant;
-		console.log(key)
+
 		return (
 			<div className='restaurantDetails'>
 				{restaurant &&
 					<div>
 						<h3>{restaurant.name}</h3>
-						<h4>Description</h4>
 						<p>{restaurant.description}</p>
-						<h4>Address</h4>
-						<p>{restaurant.address} {restaurant.zip}</p>
-						<h4>Visit our website</h4>
-						<p>{restaurant.website}</p>
+						<p><b>Address:</b> {restaurant.address} {restaurant.zip}</p>
+						<p><a href={'//'+restaurant.website} target="_blank">{restaurant.website}</a></p>
+
 						<iframe
 						  width="600"
 						  height="450"
@@ -23,8 +22,14 @@ export default class RestaurantDetails extends React.Component {
 						  src={`https://www.google.com/maps/embed/v1/place?key=${key}
 						  						    &q=${encodeURI(restaurant.address+' '+restaurant.zip)}`} allowFullScreen>
 						  }
-						</iframe>
-					</div>										}
+						</iframe>)
+
+						<div className="menus">
+							<h2>Menu</h2>
+							{restaurant.menus.map(menu=> <Menu menu={menu} />)}
+						</div>
+					</div>										
+				}
 			</div>
 		)
 	}

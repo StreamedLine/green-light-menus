@@ -1,4 +1,4 @@
 class Allergy < ApplicationRecord
-	has_many :itemAllergies
-	has_many :menuItems, :through => :itemAllergies
+	has_many :menuItemAllergies
+	has_many :menuItems, :through => :menuItemAllergies
 end
