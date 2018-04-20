@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
-import { createRestaurant } from './actions/restaurantActions'
+import { createRestaurant, getAllergies } from './actions/restaurantActions'
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
@@ -17,6 +17,10 @@ import './App.css';
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getAllergies()
+  }
+
   render() {
     console.log(this.props.history)
     return (
@@ -50,7 +54,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, createUser, createRestaurant}, dispatch)
+  return bindActionCreators({fetchToken, createUser, createRestaurant, getAllergies}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

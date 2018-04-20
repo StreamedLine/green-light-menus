@@ -1,7 +1,10 @@
-const initialState = {restaurants: [], cachedFullRestaurants: [], loadedIndex: false, loadingFull: false};
+const initialState = {allergies: [], restaurants: [], cachedFullRestaurants: [], loadedIndex: false, loadingFull: false};
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+		case 'GET_ALLERGIES':
+			return Object.assign({}, state, {allergies: action.payload})
+
 		case 'FETCH_RESTAURANTS':
 			if (state.loadedIndex) return state;
 			return Object.assign({}, state, {restaurants: action.payload, loadedIndex: true});

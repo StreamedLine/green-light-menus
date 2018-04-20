@@ -1,5 +1,6 @@
 Next:
-* make allergies list a constant in state
+* 
+addItemForm.js should dynamically create state to mirror checkboxe
 
 * form for adding item to menu
 * action for above

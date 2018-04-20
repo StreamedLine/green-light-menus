@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class AddItemForm extends React.Component {
+class AddItemForm extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -21,6 +22,11 @@ export default class AddItemForm extends React.Component {
 	}
 
 	render() {
+		const allergyBoxes = this.props.allergies.map(allergy => {return (<div>
+				<input type="checkbox" id={allergy.name} name={allergy.name}/> 
+				<label htmlFor={allergy.name}>{allergy.name}</label>
+			</div>)})
+
 		return (
 			<div className="pullLeft">
 				<h4>Add Item to Menu</h4>
@@ -30,7 +36,7 @@ export default class AddItemForm extends React.Component {
 						<label htmlFor='description'>description</label>
 						<input type="text" name='description' value={this.state.description} onChange={this.handleOnChange} />
 						<div className="allergyBoxes">
-							
+							{allergyBoxes}
 						</div>
 						<input type="submit" value="Add Item"/>
 				</form>		
@@ -38,3 +44,12 @@ export default class AddItemForm extends React.Component {
 		)
 	}
 }
+
+
+const mapStateToProps = ({restaurantReducer}) => {
+  return {
+  	allergies: restaurantReducer.allergies
+  }
+}
+
+export default connect(mapStateToProps)(AddItemForm);

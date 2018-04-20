@@ -1,3 +1,11 @@
+export function getAllergies() {
+	return (dispatch) => {
+		return fetch('http://localhost:3000/allergies')
+			.then(res => res.json())
+			.then(json => dispatch({type: 'GET_ALLERGIES', payload: json }))
+	}
+}
+
 export function fetchRestaurants() {
 	return (dispatch) => {
 		return fetch('http://localhost:3000/restaurants')

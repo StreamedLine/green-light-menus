@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'allergies/index'
+
   # Home controller routes.
   root   'home#index'
   get    'auth'            => 'home#auth'
@@ -22,4 +24,6 @@ Rails.application.routes.draw do
   resources :menus, only: [:show] do 
     resources :menu_items, only: [:index, :show, :create, :update, :destroy]
   end
+
+  resources :allergies, only: [:index]
 end
