@@ -5,7 +5,6 @@ import Menu from './Menu';
 export default class RestaurantDetails extends React.Component {
 	render() {
 		const restaurant = this.props.restaurant;
-
 		return (
 			<div className='restaurantDetails'>
 				{restaurant &&

@@ -1,6 +1,6 @@
 Next:
 * 
-addItemForm.js should dynamically create state to mirror checkboxe
+addItemForm.js should have access to menu_id
 
 * form for adding item to menu
 * action for above

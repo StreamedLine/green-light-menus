@@ -12,7 +12,7 @@ class Menu extends React.Component {
 			<div>
 				<h3>{this.props.menu.title}</h3>
 				
-				{this.props.loggedIn && <AddItemForm />}
+				{this.props.loggedIn && <AddItemForm menu_id={this.props.menu.id} />}
 
 				<div className="menuItems">
 					{menuItems}

@@ -22,9 +22,10 @@ class AddItemForm extends React.Component {
 	}
 
 	render() {
-		const allergyBoxes = this.props.allergies.map(allergy => {return (<div>
-				<input type="checkbox" id={allergy.name} name={allergy.name}/> 
-				<label htmlFor={allergy.name}>{allergy.name}</label>
+		console.log(this)
+		const allergyBoxes = this.props.allergies.map((allergy, i) => {return (<div>
+				<input type="checkbox" id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`}/> 
+				<label htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</label>
 			</div>)})
 
 		return (

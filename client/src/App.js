@@ -22,7 +22,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.history)
     return (
       <Router>
         <div className="App">
