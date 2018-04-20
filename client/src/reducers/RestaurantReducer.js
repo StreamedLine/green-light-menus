@@ -20,6 +20,9 @@ export default (state = initialState, action) => {
 	  	const newState = Object.assign({}, state, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)})
 	  	return newState
 
+	  case 'ADD_MENU':
+	  	return state
+
 		default:
 			return state;
 	}

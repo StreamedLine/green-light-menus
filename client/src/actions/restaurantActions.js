@@ -38,3 +38,22 @@ export function createRestaurant(restaurant, username) {
 			.then(json => dispatch({type: 'CREATE_RESTAURANT', payload: json}))
 	}
 }
+
+
+export default function addMenu(menu, restaurant_id) {
+	return dispatch => {
+		return fetch(`http://localhost:3000/restaurants/${restaurant_id}/menus`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+      	restaurant_id: restaurant_id,
+				menu: menu
+		  })
+    })
+			.then(res => res.json())
+			.then(json => dispatch({type: 'ADD_MENU', payload: json, restaurant_id}))
+	}
+}

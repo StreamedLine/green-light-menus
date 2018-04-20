@@ -2,7 +2,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchFull } from '../../actions/restaurantActions';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import AddMenuForm from './AddMenuForm'
 import RestaurantDetails from './RestaurantDetails';
 
 class Restaurant extends React.Component {
@@ -20,12 +21,13 @@ class Restaurant extends React.Component {
 
 		return (
 			<div>
-				{this.props.loggedIn
-					?	<p>
-							<Link to={`/restaurants/${this.props.id}/add_menu`}>Add Menu Here</Link>
-						</p>
-					: <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />
-				}
+			  <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />
+				
+			  {this.props.loggedIn &&
+			    <p>
+						<Link to={`/restaurants/${this.props.id}/add_menu`}>Add Menu Here</Link>			  
+				  </p>
+		  	}
 			</div>
 		)
 	}

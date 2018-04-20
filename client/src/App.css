@@ -35,8 +35,17 @@
   margin: 0 auto;
 }
 
-.App form p {
-  text-align: right
+.App .pullLeft {
+  text-align: left; 
+}
+
+.App form p input {
+  display: block;
+}
+
+.App form p label {
+  display: block;  
+  text-align: left
 }
 
 .App form p input {

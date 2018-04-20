@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
@@ -11,6 +11,7 @@ import BasicAbout from './components/about/BasicAbout';
 import RestaurantsContainer from './containers/RestaurantsContainer';
 import Restaurant from './components/restaurants/Restaurant';
 import CreateRestaurant from './components/restaurants/CreateRestaurant';
+import AddMenuForm from './components/restaurants/AddMenuForm'
 import './App.css';
 
 
@@ -33,9 +34,10 @@ class App extends Component {
             <Route exact path="/about" render={BasicAbout} />
 
             <Route path="/create_restaurant" component={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} username={this.props.username} />)} />
+            <Route path={`/restaurants/:id/add_menu`} component={AddMenuForm} />
 
             <Route exact path="/restaurants" component={RestaurantsContainer} />
-            <Route path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
+            <Route exact path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
           </div>
         </div>
       </Router>  

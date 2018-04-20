@@ -12,7 +12,7 @@ class MenusController < ApplicationController
   def create
     restaurant = Restaurant.find(params[:restaurant_id])
     menu = restaurant.menus.new(menu_params) if restaurant
-    binding.pry
+
     if menu.save
       render json: menu
     else
