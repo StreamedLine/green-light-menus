@@ -2,8 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchFull } from '../../actions/restaurantActions';
-import { Link, Route } from 'react-router-dom';
-import AddMenuForm from './AddMenuForm'
+import { Link } from 'react-router-dom';
 import RestaurantDetails from './RestaurantDetails';
 
 class Restaurant extends React.Component {

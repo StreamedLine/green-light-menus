@@ -15,6 +15,7 @@ export default class RestaurantDetails extends React.Component {
 						<p><a href={'//'+restaurant.website} target="_blank">{restaurant.website}</a></p>
 
 						<iframe
+							title="rgmap"
 						  width="600"
 						  height="450"
 						  frameBorder="0" style={{border: '4px solid grey'}}
@@ -25,7 +26,7 @@ export default class RestaurantDetails extends React.Component {
 
 						<div className="menus">
 							<h2>Menu</h2>
-							{restaurant.menus.map(menu=> <Menu menu={menu} />)}
+							{restaurant.menus.map((menu, i)=> <Menu key={i} menu={menu} />)}
 						</div>
 					</div>										
 				}

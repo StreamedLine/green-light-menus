@@ -1,10 +1,10 @@
 Next:
-* 
-addItemForm.js should have access to menu_id
 
-* form for adding item to menu
-* action for above
+* addItemForm should grab checkbox valus when it calls the action
+* action for adding item to menu
 
 
 Cleanup:
 * make filenames for forms consistent
+* make action names consistent (fetch/get)
+* separate things into their own components

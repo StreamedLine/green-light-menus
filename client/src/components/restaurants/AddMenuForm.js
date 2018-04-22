@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import addMenu from '../../actions/restaurantActions';
+import { addMenu } from '../../actions/restaurantActions';
 
 class AddMenuForm extends React.Component {
 	constructor(props) {

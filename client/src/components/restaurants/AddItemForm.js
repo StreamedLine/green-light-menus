@@ -1,5 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { addMenuItem } from '../../actions/restaurantActions.js';
 
 class AddItemForm extends React.Component {
 	constructor(props) {
@@ -18,12 +20,23 @@ class AddItemForm extends React.Component {
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 
+		const checkboxes = e.target.querySelectorAll('input[type=checkbox]');
+		const checked = Array.from(checkboxes).filter(cb => cb.checked);
+		const checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
 
+		const menu = {
+			id: this.props.menu_id,
+			menuItems_attributes: [
+				Object.assign({}, this.state, {allergies_attributes: checkedVals})
+			]
+		}
+		
+		this.props.addMenuItem(menu, this.props.menu_id)
+		console.log(this, menu, this.props.menu_id)
 	}
 
 	render() {
-		console.log(this)
-		const allergyBoxes = this.props.allergies.map((allergy, i) => {return (<div>
+		const allergyBoxes = this.props.allergies.map((allergy, i) => {return (<div key={i}>
 				<input type="checkbox" id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`}/> 
 				<label htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</label>
 			</div>)})
@@ -53,4 +66,8 @@ const mapStateToProps = ({restaurantReducer}) => {
   }
 }
 
-export default connect(mapStateToProps)(AddItemForm);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ addMenuItem }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddItemForm);

@@ -48,7 +48,7 @@ export function createRestaurant(restaurant, username) {
 }
 
 
-export default function addMenu(menu, restaurant_id) {
+export function addMenu(menu, restaurant_id) {
 	return dispatch => {
 		return fetch(`http://localhost:3000/restaurants/${restaurant_id}/menus`, {
 			method: 'POST',
@@ -65,3 +65,24 @@ export default function addMenu(menu, restaurant_id) {
 			.then(json => dispatch({type: 'ADD_MENU', payload: json, restaurant_id}))
 	}
 }
+
+export function addMenuItem(menu, menu_id) {
+	return dispatch => {
+		return fetch(`http://localhost:3000/menus/${menu_id}`, {
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+      	menu: menu
+		  })
+    })
+			.then(res => res.json())
+			.then(json => dispatch({type: 'ADD_MENU_ITEM', payload: json}))
+	}
+}
+
+
+
+

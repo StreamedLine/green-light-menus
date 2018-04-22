@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
@@ -30,13 +30,13 @@ class App extends Component {
             <NavLinksContainer /> 
           </header>
           <div className="main">
-            <Route exact path="/" render={() => (<h2>Welcome To Greenlight Menus</h2> )} /> 
+            <Route exact path="/" render={() => (<h2>DEV: todo - create homepage</h2> )} /> 
             <Route path="/register" component={({history}) => (<UserCreateForm createUser={this.props.createUser} history={history} />)} /> 
             <Route path="/login" component={({history}) => (<UserLoginForm fetchToken={this.props.fetchToken} history={history} />)} /> 
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
-            <Route exact path="/about" render={BasicAbout} />
+            <Route exact path="/about" component={BasicAbout} />
 
-            <Route path="/create_restaurant" component={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} username={this.props.username} />)} />
+            <Route path="/create_restaurant" render={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} username={this.props.username} />)} />
             <Route path={`/restaurants/:id/add_menu`} component={AddMenuForm} />
 
             <Route exact path="/restaurants" component={RestaurantsContainer} />

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class MenuItem extends React.Component {
 	render() {
-		const greenLights = this.props.item.allergies.map(greenLight=> <span>{greenLight.name}</span>)
+		const greenLights = this.props.item.allergies.map((greenLight, i)=> <span key={i}>{greenLight.name}</span>)
 		return (
 			<div>
 				<div className="menuItem">

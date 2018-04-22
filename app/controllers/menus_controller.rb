@@ -22,6 +22,7 @@ class MenusController < ApplicationController
 
   def update
     menu = Menu.find(menu_params[:id])
+  
     if menu.update(menu_params)
       render json: menu
     else
@@ -38,6 +39,6 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:id, :title, :menuItems_attributes => [:title, :description, :user_contributed, :menu_id])
+    params.require(:menu).permit(:id, :title, :menuItems_attributes => [:title, :description, :user_contributed, :menu_id, :allergies_attributes => [:name]])
   end
 end

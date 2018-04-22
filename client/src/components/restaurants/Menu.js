@@ -1,18 +1,19 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
+//import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MenuItem from './MenuItem';
 import AddItemForm from './AddItemForm';
 
 class Menu extends React.Component {
 	render() {
-		const menuItems = this.props.menu.menuItems.map(item=> <MenuItem item={item} />) 
+		const menuItems = this.props.menu.menuItems.map((item, i)=> <MenuItem key={i} item={item} />) 
 
 		return (
 			<div>
 				<h3>{this.props.menu.title}</h3>
 				
-				{this.props.loggedIn && <AddItemForm menu_id={this.props.menu.id} />}
+				<AddItemForm menu_id={this.props.menu.id} />
+				{this.props.loggedIn && false && 'addItemForm should go here. (outside for testing purposes'}
 
 				<div className="menuItems">
 					{menuItems}
