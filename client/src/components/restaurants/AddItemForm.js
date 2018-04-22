@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addMenuItem } from '../../actions/restaurantActions.js';
+import AllergyCheckboxes from '../allergies/AllergyCheckboxes'
 
 class AddItemForm extends React.Component {
 	constructor(props) {
@@ -36,10 +37,7 @@ class AddItemForm extends React.Component {
 	}
 
 	render() {
-		const allergyBoxes = this.props.allergies.map((allergy, i) => {return (<div key={i}>
-				<input type="checkbox" id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`}/> 
-				<label htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</label>
-			</div>)})
+		const allergyBoxes = <AllergyCheckboxes menu_id={this.props.menu_id} />;
 
 		return (
 			<div className="pullLeft">
@@ -59,15 +57,8 @@ class AddItemForm extends React.Component {
 	}
 }
 
-
-const mapStateToProps = ({restaurantReducer}) => {
-  return {
-  	allergies: restaurantReducer.allergies
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ addMenuItem }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddItemForm);
+export default connect(null, mapDispatchToProps)(AddItemForm);

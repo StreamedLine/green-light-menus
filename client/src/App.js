@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
 import { createRestaurant, getAllergies } from './actions/restaurantActions'
+import Homepage from './components/dashboard/Homepage'
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
@@ -30,7 +31,7 @@ class App extends Component {
             <NavLinksContainer /> 
           </header>
           <div className="main">
-            <Route exact path="/" render={() => (<h2>DEV: todo - create homepage</h2> )} /> 
+            <Route exact path="/" component={Homepage} /> 
             <Route path="/register" component={({history}) => (<UserCreateForm createUser={this.props.createUser} history={history} />)} /> 
             <Route path="/login" component={({history}) => (<UserLoginForm fetchToken={this.props.fetchToken} history={history} />)} /> 
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
