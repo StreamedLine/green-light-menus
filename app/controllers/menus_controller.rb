@@ -16,7 +16,7 @@ class MenusController < ApplicationController
     if menu.save
       render json: menu
     else
-      render json: {error: "something went wrong. menu was not saved"}
+      render json: {error: menu.errors.full_messages}
     end
   end
 
@@ -26,7 +26,7 @@ class MenusController < ApplicationController
     if menu.update(menu_params)
       render json: menu
     else
-      render json: {error: "something went wrong. menu was not updated"}
+      render json: {error: menu.errors.full_messages}
     end
   end
 
