@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addMenuItem } from '../../actions/restaurantActions.js';
-import AllergyCheckboxes from '../allergies/AllergyCheckboxes'
+import AllergyCheckboxes from '../allergies/AllergyCheckboxes';
 
 class AddItemForm extends React.Component {
 	constructor(props) {

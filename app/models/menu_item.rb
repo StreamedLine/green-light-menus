@@ -3,15 +3,12 @@ class MenuItem < ApplicationRecord
 	has_many :menuItemAllergies
 	has_many :allergies, :through => :menuItemAllergies
 
-	#accepts_nested_attributes_for :allergies
+	validates :title, presence: true
 
 	def allergies_attributes=(allergies_attributes)
 		allergies_attributes.each do |allergy|
-			puts allergy
 			mia = self.menuItemAllergies.new
-			puts mia
 			mia.allergy = Allergy.find_by(name: allergy[:name])
-			puts mia.allergy
 			mia.save
 		end
 	end

@@ -1,8 +1,9 @@
 Next:
 
-* addItemForm should grab checkbox valus when it calls the action
-* action for adding item to menu
-
+* implement search in homepage
+* submitting forms redirects page
+* add data validations
+* flash with api?
 
 Cleanup:
 * make filenames for forms consistent
