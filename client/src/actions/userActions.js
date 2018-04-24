@@ -13,9 +13,13 @@ export function fetchToken({email, password}) {
 		    }
 		  })
     })
-			.then(res => res.json())
+			.then(res => { 
+				if (res.ok) 
+					return res.json() 
+				else
+				 	throw Error(res.statusText)
+			})
 			.then(res => {
-				if (!res.jwt) dispatch({type: 'FETCH_TOKEN', payload: {jwt: false}});
 				fetch("http://localhost:3000/auth", {
 					headers: {
 						"Authorization": `Bearer ${res.jwt}`
@@ -24,7 +28,7 @@ export function fetchToken({email, password}) {
 					.then(response => response.json())
 					.then(json => dispatch({type: 'FETCH_TOKEN', payload: {jwt: res.jwt, username: json.username}}))
 				
-			})
+			}).catch(err => {console.log(err);return dispatch({type: 'FETCH_TOKEN', payload: {jwt: false} })} )
 	}
 }
 
@@ -57,10 +61,15 @@ export function createUser({username, email, password}) {
 		    }
 		  })
     })
-			.then(res => res.json())
+		.then(res => res.json())
+		.then(json => dispatch({type: 'CREATE_USER', payload: json}))
 	}
 }
 
 export function logoutUser() {
 	return {type: 'LOGOUT_USER'}
+}
+
+export function resetDone() {
+	return {type: 'RESET_DONE'}
 }

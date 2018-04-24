@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { fetchToken, resetDone } from '../../actions/userActions';
 
-export default class LoginForm extends React.Component {
+
+class LoginForm extends React.Component {
 	constructor() {
 		super();
 
@@ -17,13 +21,24 @@ export default class LoginForm extends React.Component {
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 		this.props.fetchToken(this.state)
-		this.props.history.push('/')
 	}
 
 	render() {
+		var message = null;
+		console.log(this)
+		if (this.props.done) {
+			this.props.resetDone();
+			this.props.history.push('/')
+		} else {
+			if (this.props.err && this.props.err.on == 'login') {
+				message = this.props.err.msg;
+			}
+		}
+		console.log(this, message)
 	  return (
   	  <form onSubmit={this.handleOnSubmit}>
   	  	<h3>Login</h3>
+  	  	<h4>{message}</h4>
     		<p>
 	    	  <label htmlFor="email">email</label>
   	    	<input type="email" value={this.state.email} name="email" onChange={this.handleOnChange} />
@@ -38,3 +53,13 @@ export default class LoginForm extends React.Component {
 	  )
 	}
 }
+
+const mapStateToProps = ({userReducer}) => {
+  return {authenticateUser: userReducer.authenticateUser, done: userReducer.done, err: userReducer.error}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchToken, resetDone}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

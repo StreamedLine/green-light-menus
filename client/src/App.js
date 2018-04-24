@@ -10,9 +10,7 @@ import UserCreateForm from './components/users/UserCreateForm';
 import NavLinksContainer from './containers/NavLinksContainer';
 import BasicAbout from './components/about/BasicAbout';
 import RestaurantsContainer from './containers/RestaurantsContainer';
-import Restaurant from './components/restaurants/Restaurant';
-import CreateRestaurant from './components/restaurants/CreateRestaurant';
-import AddMenuForm from './components/restaurants/AddMenuForm'
+import AddItemForm from './components/restaurants/AddItemForm';
 import './App.css';
 
 
@@ -32,16 +30,13 @@ class App extends Component {
           </header>
           <div className="main">
             <Route exact path="/" component={Homepage} /> 
-            <Route path="/register" component={({history}) => (<UserCreateForm createUser={this.props.createUser} history={history} />)} /> 
-            <Route path="/login" component={({history}) => (<UserLoginForm fetchToken={this.props.fetchToken} history={history} />)} /> 
+
+            <Route path="/register" component={UserCreateForm} /> 
+            <Route path="/login" component={UserLoginForm} /> 
             <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
             <Route exact path="/about" component={BasicAbout} />
 
-            <Route path="/create_restaurant" render={({history}) => (<CreateRestaurant createRestaurant={this.props.createRestaurant} history={history} username={this.props.username} />)} />
-            <Route path={`/restaurants/:id/add_menu`} component={AddMenuForm} />
-
             <Route exact path="/restaurants" component={RestaurantsContainer} />
-            <Route exact path="/restaurants/:id" component={({match}) => (<Restaurant id={match.params.id}/>)} />
           </div>
         </div>
       </Router>  

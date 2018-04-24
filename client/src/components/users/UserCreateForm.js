@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { createUser, resetDone } from '../../actions/userActions';
 
-export default class CreateForm extends React.Component {
-	constructor() {
-		super();
+
+class CreateForm extends React.Component {
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			username: '',
@@ -18,13 +22,24 @@ export default class CreateForm extends React.Component {
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 		this.props.createUser(this.state)
-		this.props.history.push('/login')
 	}
 
 	render() {
+		var message = null;
+	
+		if (this.props.done == true) {
+			this.props.resetDone();
+			this.props.history.push('/login')
+		} else {
+			if (this.props.err && this.props.err.on == 'create') {
+				message = this.props.err.msg;
+			}
+		}
+
 	  return (
   	  <form onSubmit={this.handleOnSubmit}>
   	  	<h3>Create Account</h3> 
+  	  	<h4>{message}</h4>
   	  	<p>
 	    	  <label htmlFor="email">email</label>
   	    	<input type="email" value={this.state.email} name="email" onChange={this.handleOnChange} />
@@ -43,3 +58,15 @@ export default class CreateForm extends React.Component {
 	  )
 	}
 }
+
+const mapStateToProps = ({userReducer}) => {
+  return {done: userReducer.done, err: userReducer.error}
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({createUser, resetDone}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
+

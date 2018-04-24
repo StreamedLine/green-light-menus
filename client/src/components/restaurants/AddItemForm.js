@@ -32,8 +32,7 @@ class AddItemForm extends React.Component {
 			]
 		}
 		
-		this.props.addMenuItem(menu, this.props.menu_id)
-		console.log(this, menu, this.props.menu_id)
+		this.props.addMenuItem(menu, this.props.menu_id);
 	}
 
 	render() {

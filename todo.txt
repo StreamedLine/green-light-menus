@@ -1,9 +1,10 @@
 Next:
 
+* break and rewrite entire app!
+* render forms with history prop
 * implement search in homepage
 * submitting forms redirects page
 * add data validations
-* flash with api?
 
 Cleanup:
 * make filenames for forms consistent

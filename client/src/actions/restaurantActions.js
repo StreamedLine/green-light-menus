@@ -79,7 +79,7 @@ export function addMenuItem(menu, menu_id) {
 		  })
     })
 			.then(res => res.json())
-			.then(json => dispatch({type: 'ADD_MENU_ITEM', payload: json}))
+			.then(json => 	dispatch({type: 'ADD_MENU_ITEM', payload: json}))
 	}
 }
 
