@@ -1,4 +1,4 @@
-const initialState = {allergies: [], restaurants: [], cachedFullRestaurants: [], loadedIndex: false, loadingFull: false};
+const initialState = {allergies: [], restaurants: [], cachedFullRestaurants: [], loadedIndex: false, loadingFull: false, currentRestaurant: null};
 
 export default (state = initialState, action) => {
 	switch (action.type) {
@@ -14,14 +14,13 @@ export default (state = initialState, action) => {
   			return state
 			}
 			const cachedFullRestaurants = state.cachedFullRestaurants.concat(action.payload)
-			return Object.assign({}, state, {cachedFullRestaurants: cachedFullRestaurants});
+			return Object.assign({}, state, {cachedFullRestaurants: cachedFullRestaurants}, {currentRestaurant: action.payload});
 
 		case 'SET_LOAD_STATUS':
 			return Object.assign({}, state, {loadingFull: action.payload})
 
 	  case 'CREATE_RESTAURANT':
-	  	const newState = Object.assign({}, state, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)})
-	  	return newState
+	  	return Object.assign({}, state, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant: action.payload});
 
 	  case 'ADD_MENU':
 	  	return state

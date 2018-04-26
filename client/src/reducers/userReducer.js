@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
 				const error = {on: '', msg: ''};
 				return Object.assign({}, state, {error}, {done: true});
 			}		
+			break //gets rid of annoying error
+		//will always return something by this point
 
 		case 'FETCH_TOKEN':
 			const {token, username} = action.payload;

@@ -37,7 +37,7 @@ class AddItemForm extends React.Component {
 
 	render() {
 		const allergyBoxes = <AllergyCheckboxes menu_id={this.props.menu_id} />;
-
+		console.log(this)
 		return (
 			<div className="pullLeft">
 				<h4>Add Item to Menu</h4>

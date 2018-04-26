@@ -6,15 +6,34 @@ import { withRouter } from 'react-router'
 import MenuItem from './MenuItem';
 import AddItemForm from './AddItemForm';
 
+
 class Menu extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			currentForm: -1
+		}
+	}
+
+	handleFormToggle = (id) => {
+		if (id == this.state.currentForm) {
+			this.setState({currentForm: -1})
+		} else {
+			this.setState({currentForm: id})
+		}
+	}
+
 	render() {
 		const menuItems = this.props.menu.menuItems.map((item, i)=> <MenuItem key={i} item={item} />) 
 		const path = this.props.match.url
 
 		return (
-			<div>
+			<div className="menu">
 				<h3>{this.props.menu.title}</h3>
-				<AddItemForm menu_id={this.props.menu.id} />
+				
+				<Link to={`/restaurants/${this.props.currentRestaurantId}/menus/${this.props.menu.id}`} onClick={()=> {this.handleFormToggle(this.props.menu.id)}}>Add Item</Link>
+				{(this.state.currentForm == this.props.menu.id) && <AddItemForm menu_id={this.props.menu.id} /> }
 
 				{this.props.loggedIn && false && "addItemForm should go here. (it's outside for testing purposes"}
 
@@ -26,8 +45,9 @@ class Menu extends React.Component {
 	}
 }
 
-const mapStateToProps = ({userReducer}) => {
+const mapStateToProps = ({userReducer, restaurantReducer}) => {
   return {
+  	currentRestaurantId: restaurantReducer.currentRestaurant.id,
   	loggedIn: userReducer.loggedIn
   }
 }

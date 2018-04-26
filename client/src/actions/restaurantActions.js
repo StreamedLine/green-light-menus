@@ -67,6 +67,7 @@ export function addMenu(menu, restaurant_id) {
 }
 
 export function addMenuItem(menu, menu_id) {
+	console.log('hi');
 	return dispatch => {
 		return fetch(`http://localhost:3000/menus/${menu_id}`, {
 			method: 'PATCH',

@@ -25,7 +25,6 @@ class LoginForm extends React.Component {
 
 	render() {
 		var message = null;
-		console.log(this)
 		if (this.props.done) {
 			this.props.resetDone();
 			this.props.history.push('/')
@@ -34,7 +33,7 @@ class LoginForm extends React.Component {
 				message = this.props.err.msg;
 			}
 		}
-		console.log(this, message)
+
 	  return (
   	  <form onSubmit={this.handleOnSubmit}>
   	  	<h3>Login</h3>

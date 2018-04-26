@@ -1,6 +1,6 @@
 Next:
 
-* break and rewrite entire app!
+* menu should have its own page for adding items
 * render forms with history prop
 * implement search in homepage
 * submitting forms redirects page
