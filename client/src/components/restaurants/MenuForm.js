@@ -20,6 +20,7 @@ class AddMenuForm extends React.Component {
 		e.preventDefault();
 
 		this.props.addMenu(this.state, this.props.match.params.id);
+		
 		this.props.history.push(this.props.location.pathname.match(/\/.*\/\d+/)[0])
 	}
 

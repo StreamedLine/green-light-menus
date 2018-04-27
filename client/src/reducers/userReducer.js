@@ -9,13 +9,11 @@ export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'CREATE_USER':
 			if (action.payload.error) {
-				handleError(state, action, 'create')
+				return handleError(state, action, 'create')
 			} else {
 				const error = {on: '', msg: ''};
 				return Object.assign({}, state, {error}, {done: true});
 			}		
-			break //gets rid of annoying error
-		//will always return something by this point
 
 		case 'FETCH_TOKEN':
 			const {token, username} = action.payload;

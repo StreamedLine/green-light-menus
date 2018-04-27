@@ -1,9 +1,8 @@
+
 Next:
 
-* menu should have its own page for adding items
-* render forms with history prop
+* allow form to edit (instead of just update)
 * implement search in homepage
-* submitting forms redirects page
 * add data validations
 
 Cleanup:

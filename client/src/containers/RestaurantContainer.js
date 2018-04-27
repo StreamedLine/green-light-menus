@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter} from 'react-router-dom';
 import { fetchFull } from '../actions/restaurantActions';
-import AddMenuForm from './../components/restaurants/AddMenuForm';
+import MenuForm from './../components/restaurants/MenuForm';
+import ItemForm from './../components/restaurants/ItemForm';
 import RestaurantList from './../components/restaurants/RestaurantsList';
 import RestaurantDetails from '../components/restaurants/RestaurantDetails';
 
@@ -11,26 +12,25 @@ class RestaurantContainer extends React.Component {
 	constructor(props) {
 		super(props)
 		
-		let restaurant = props.cachedFullRestaurants.find(r => r.id == props.match.params.id);
-		if (!restaurant && !props.loadingFull) {
-			props.fetchFull(props.match.params.id);
+		if (!this.props.currentRestaurant && !this.props.loadingFull) {
+			this.props.fetchFull(this.props.match.params.id);
 		} 
 	}
 
 	render() {
-		const currentRestaurant = this.props.cachedFullRestaurants.find(r => r.id == this.props.match.params.id);
+		const currentRestaurant = this.props.currentRestaurant;
 
 		return (
 			<div>
-				<div>
-					{this.props.loggedIn &&
-				    <p>
-							<Link to={`/restaurants/${this.props.match.params.id}/add_menu`}>Add Menu Here</Link>		
-							<Route path={`/restaurants/:id/add_menu`} component={AddMenuForm} />	  
-					  </p>
-			  	}
-				  <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />  
-				</div>
+				{this.props.loggedIn &&
+			    <div>
+						<Link to={`/restaurants/${this.props.match.params.id}/add_menu`}>Add Menu Here</Link>		
+						<Route path={`/restaurants/:id/add_menu`} component={MenuForm} />	  
+				  </div>
+		  	}
+		  	
+			  <Route exact path={`/restaurants/:id`} component={() => <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />} />  
+			  <Route path={'/restaurants/:id/menus/:menu_id'} component={ItemForm} />	
 			</div>
 		)
 	}
@@ -38,6 +38,7 @@ class RestaurantContainer extends React.Component {
 
 const mapStateToProps = ({restaurantReducer, userReducer}) => {
   return {
+  	currentRestaurant: restaurantReducer.currentRestaurant,
   	cachedFullRestaurants: restaurantReducer.cachedFullRestaurants, 
   	loadingFull: restaurantReducer.loadingFull,
   	loggedIn: userReducer.loggedIn

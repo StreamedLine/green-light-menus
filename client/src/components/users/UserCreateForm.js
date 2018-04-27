@@ -63,7 +63,6 @@ const mapStateToProps = ({userReducer}) => {
   return {done: userReducer.done, err: userReducer.error}
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({createUser, resetDone}, dispatch)
 }

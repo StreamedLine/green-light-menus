@@ -27,7 +27,7 @@ export default class RestaurantDetails extends React.Component {
 
 						<div className="menus">
 							<h2>Menu</h2>
-							{restaurant.menus.map((menu, i)=> <Menu key={i} menu={menu} />)}
+							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} />)}
 						</div>
 					</div>										
 				}

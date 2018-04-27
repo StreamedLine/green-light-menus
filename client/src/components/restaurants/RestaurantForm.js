@@ -1,6 +1,9 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { resetDone } from '../../actions/restaurantActions';
 
-export default class CreateRestaurant extends React.Component {
+class RestaurantForm extends React.Component {
 	constructor() {
 		super();
 
@@ -21,13 +24,24 @@ export default class CreateRestaurant extends React.Component {
 	handleOnSubmit = (e) => {
 		e.preventDefault();
 		this.props.createRestaurant(this.state, this.props.username);
-		this.props.history.push('/') //should go to /addMenu
 	}
 
 	render() {
+		var message = null;
+	
+		if (this.props.done == true) {
+			this.props.resetDone();
+			this.props.history.push('/restaurants')
+		} else {
+			if (this.props.err && this.props.err.on == 'create') {
+				message = this.props.err.msg;
+			}
+		}
+
 		return (
 			<div>
 			<h3>Add Your Restaurant Below</h3>
+				<h4>{message}</h4>
 				<form onSubmit={this.handleOnSubmit} >
 					<p>
 						<label htmlFor="name">name</label>
@@ -66,5 +80,15 @@ export default class CreateRestaurant extends React.Component {
 		)
 	}
 }
+
+const mapStateToProps = ({restaurantReducer}) => {
+  return {done: restaurantReducer.done, err: restaurantReducer.error}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ resetDone, }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantForm);
 
 

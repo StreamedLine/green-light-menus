@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
     if restaurant.save
       render json: restaurant
     else
-      render json: {error: menu.errors.full_messages}
+      render json: {error: restaurant.errors.full_messages}
     end
   end
 
@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
     if restaurant.update(restaurant_params)
       render json: restaurant
     else
-      render json: {error: menu.errors.full_messages}
+      render json: {error: restaurant.errors.full_messages}
     end
   end
 

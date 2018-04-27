@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { createRestaurant } from '../actions/restaurantActions';
-import CreateRestaurant from './../components/restaurants/CreateRestaurant';
-import AddMenuForm from './../components/restaurants/AddMenuForm';
+import RestaurantForm from './../components/restaurants/RestaurantForm';
+import MenuForm from './../components/restaurants/MenuForm';
 import RestaurantContainer from './RestaurantContainer';
 import RestaurantList from './../components/restaurants/RestaurantsList';
 
@@ -14,9 +14,8 @@ class RestaurantsContainer extends React.Component {
 		return (
 			<div>
 				<Switch>
-		    	<Route path={`/create_restaurant`} render={(props, {history}) => (<CreateRestaurant {...props} history={history} />)} />
 		    	<Route exact path='/restaurants' component={RestaurantList} />
-        	<Route path={`/restaurants/:id`} component={RestaurantContainer} />
+        	<Route path={`/restaurants/:id`} component={RestaurantContainer} />	
 				</Switch>
 			</div>
 		)

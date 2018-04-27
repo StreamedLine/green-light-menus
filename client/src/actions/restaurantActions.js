@@ -42,8 +42,8 @@ export function createRestaurant(restaurant, username) {
 				username
 		  })
     })
-			.then(res => res.json())
-			.then(json => dispatch({type: 'CREATE_RESTAURANT', payload: json}))
+		.then(res => res.json())
+		.then(json => dispatch({type: 'CREATE_RESTAURANT', payload: json}))
 	}
 }
 
@@ -61,8 +61,8 @@ export function addMenu(menu, restaurant_id) {
 				menu: menu
 		  })
     })
-			.then(res => res.json())
-			.then(json => dispatch({type: 'ADD_MENU', payload: json, restaurant_id}))
+		.then(res => res.json())
+		.then(json => dispatch({type: 'ADD_MENU', payload: json, restaurant_id}))
 	}
 }
 
@@ -84,6 +84,8 @@ export function addMenuItem(menu, menu_id) {
 	}
 }
 
-
+export function resetDone() {
+	return {type: 'RESET_DONE'}
+}
 
 
