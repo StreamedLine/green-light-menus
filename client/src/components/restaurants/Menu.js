@@ -5,7 +5,7 @@ import MenuItem from './MenuItem';
 
 export default class Menu extends React.Component {
 	render() {
-			const menuItems = this.props.menu.menuItems.map((item, i)=> <MenuItem key={i} item={item} />) 
+			const menuItems = this.props.menu.menuItems.map((item, i)=> <MenuItem key={i} menu={this.props.menu} item={item} />) 
 			//const path = this.props.match.url
 			return (
 				<div className="menu">

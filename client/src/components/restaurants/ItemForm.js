@@ -9,9 +9,14 @@ class ItemForm extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.menuItem = false;
+		if (this.props.match.params.menu_item_id) {
+			this.menuItem = this.props.currentRestaurant.menus.find( m => m.id == this.props.match.params.menu_id ).menuItems.find( mi => mi.id == this.props.match.params.menu_item_id);
+		}
+
 		this.state = {
-			title: '',
-			description: ''
+			title: this.menuItem.title || '',
+			description: this.menuItem.description || ''
 		}
 	}
 
@@ -49,7 +54,7 @@ class ItemForm extends React.Component {
 			}
 		}
 
-		const allergyBoxes = <AllergyCheckboxes menu_id={this.props.match.params.menu_id} />;
+		const allergyBoxes = <AllergyCheckboxes menu_id={this.props.match.params.menu_id} menuItem={this.menuItem}/>;
 
 		return (
 			<div className="pullLeft">

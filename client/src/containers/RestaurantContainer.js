@@ -30,7 +30,8 @@ class RestaurantContainer extends React.Component {
 		  	}
 		  	
 			  <Route exact path={`/restaurants/:id`} component={() => <RestaurantDetails restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />} />  
-			  <Route path={'/restaurants/:id/menus/:menu_id'} component={ItemForm} />	
+			  <Route exact path={'/restaurants/:id/menus/:menu_id'} component={ItemForm} />	
+			  <Route exact path={'/restaurants/:id/menus/:menu_id/menu_items/:menu_item_id'} component={ItemForm} />	
 			</div>
 		)
 	}
