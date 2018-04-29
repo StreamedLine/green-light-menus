@@ -1,14 +1,20 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { addMenu } from '../../actions/restaurantActions';
 
-class AddMenuForm extends React.Component {
+export default class MenuForm extends React.Component {
 	constructor(props) {
 		super(props);
 
+
+		var currentTitle = false;
+		//if it's an edit form (instead of create)
+		if (props.edit) {
+			debugger
+			let currentMenu = props.currentRestaurant.menus.find( m => m.id == props.match.params.menu_id)
+			currentTitle = currentMenu ? currentMenu.title : false;
+		}
+
 		this.state = {
-			title: ''
+			title: currentTitle || ''
 		}
 	}
 
@@ -18,13 +24,17 @@ class AddMenuForm extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-
-		this.props.addMenu(this.state, this.props.match.params.id);
-		
-		this.props.history.push(this.props.location.pathname.match(/\/.*\/\d+/)[0])
+		if (!this.props.edit) {
+			this.props.submitMenu(this.state, this.props.match.params.id, 'POST', this.props.match.params.id);
+			this.props.history.push(this.props.location.pathname.match(/\/.*\/\d+/)[0])
+		} else {
+			this.props.submitMenu(this.state, this.props.match.params.menu_id, 'PUT', this.props.currentRestaurant.id);
+			this.props.history.push(`/restaurants/${this.props.currentRestaurant.id}`)
+		}
 	}
 
 	render() {
+		console.log(this)
 		return (
 			<div className="pullLeft">
 				<h4>Add New Menu Here</h4>
@@ -39,8 +49,3 @@ class AddMenuForm extends React.Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ addMenu }, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(AddMenuForm);

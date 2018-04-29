@@ -48,23 +48,35 @@ export function createRestaurant(restaurant, username) {
 }
 
 
-export function addMenu(menu, restaurant_id) {
+export function postPutMenu(menu, id, method, restaurant_id) {
+	let body = {}, path = '';
+	if (method === 'POST') {
+	  body = JSON.stringify({
+    	restaurant_id: id,
+			menu: menu
+	  });
+	  path = `http://localhost:3000/restaurants/${id}/menus`
+	} else if (method === 'PUT') {
+		body = JSON.stringify({
+			menu: Object.assign({}, menu, {id})
+	  });
+	  path = `http://localhost:3000/menus/${id}`
+	}
+	
 	return dispatch => {
-		return fetch(`http://localhost:3000/restaurants/${restaurant_id}/menus`, {
-			method: 'POST',
+		return fetch(path, {
+			method: method,
 			headers: {
 				"Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({
-      	restaurant_id: restaurant_id,
-				menu: menu
-		  })
+      body: body
     })
 		.then(res => res.json())
-		.then(json => dispatch({type: 'ADD_MENU', payload: json, restaurant_id}))
+		.then(json => dispatch({type: `POST_PUT_MENU`, payload: json, id, restaurant_id}))
 	}
 }
+
 
 export function addMenuItem(menu, menu_id) {
 	console.log('hi');

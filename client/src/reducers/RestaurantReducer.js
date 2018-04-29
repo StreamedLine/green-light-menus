@@ -45,17 +45,22 @@ export default (state = initialState, action) => {
 			const error = {on: '', msg: ''};
 	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant: action.payload});
 
-	  case 'ADD_MENU':
-	  	return state
+	  case 'POST_PUT_MENU':
+	  	var restaurant = state.cachedFullRestaurants.find( r => r.id = action.restaurant_id);
+	  	debugger
+	  	var menus = restaurant.menus.map( m => m.id == action.payload.id ? action.payload : m);
+	  	restaurant = Object.assign({}, restaurant, {menus: menus})
+	  	var restaurants = state.cachedFullRestaurants.map( r => r.id == restaurant.id ? restaurant : r);
+	  	return Object.assign({}, state, {cachedFullRestaurants: restaurants}, currentRestaurant: restaurant);
 
 	  case 'ADD_MENU_ITEM':
-	  	const restaurant = state.cachedFullRestaurants.find( r => r.menus.filter( m => m.id == action.payload.id).length > 0 );
+	  	var restaurant = state.cachedFullRestaurants.find( r => r.menus.filter( m => m.id == action.payload.id).length > 0 );
 	  	if (!restaurant || action.payload.error) {
 				return handleError(state, action, 'create')
 			}	
-	  	const menus = restaurant.menus.map(m => action.payload.id == m.id ? action.payload : m);
-	  	const restaurants = state.cachedFullRestaurants.map( r => r.id == restaurant.id ? restaurant : r);
-	  	const currentRestaurant = state.cachedFullRestaurants.find( r => r.id == restaurant.id )
+	  	var menus = restaurant.menus.map(m => action.payload.id == m.id ? action.payload : m);
+	  	var restaurants = state.cachedFullRestaurants.map( r => r.id == restaurant.id ? restaurant : r);
+	  	var currentRestaurant = state.cachedFullRestaurants.find( r => r.id == restaurant.id )
 	  	return Object.assign({}, state, {cachedFullRestaurants: restaurants}, {done: true}, {currentRestaurant: currentRestaurant})
 
 

@@ -12,7 +12,8 @@ export default class Menu extends React.Component {
 					<h3>{this.props.menu.title}</h3>
 					
 					<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}`}>Add Item</Link>
-					 
+					<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}/edit`}>Edit Menu</Link>
+
 					{this.props.loggedIn && false && "addItemForm should go here. (it's outside for testing purposes"}
 
 					<div className="menuItems">

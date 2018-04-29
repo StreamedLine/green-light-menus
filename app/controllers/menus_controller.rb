@@ -22,7 +22,7 @@ class MenusController < ApplicationController
 
   def update
     menu = Menu.find(menu_params[:id])
-  
+
     if menu.update(menu_params)
       render json: menu
     else

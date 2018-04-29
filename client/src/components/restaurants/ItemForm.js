@@ -10,8 +10,10 @@ class ItemForm extends React.Component {
 		super(props);
 
 		this.menuItem = false;
-		if (this.props.match.params.menu_item_id) {
-			this.menuItem = this.props.currentRestaurant.menus.find( m => m.id == this.props.match.params.menu_id ).menuItems.find( mi => mi.id == this.props.match.params.menu_item_id);
+		//check to see if we are editing (instead of creating)
+		const {menu_item_id, menu_id} = this.props.match.params;
+		if (menu_item_id) {
+			this.menuItem = this.props.currentRestaurant.menus.find( m => m.id == menu_id ).menuItems.find( mi => mi.id == menu_item_id);
 		}
 
 		this.state = {
