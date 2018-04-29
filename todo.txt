@@ -1,7 +1,6 @@
 
 Next:
 
-* allow form to edit (instead of just update)
 * implement search in homepage
 * add data validations
 

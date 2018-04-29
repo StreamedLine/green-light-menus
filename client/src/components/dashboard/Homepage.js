@@ -1,31 +1,45 @@
 import React from 'react';
 import AllergyCheckboxes from '../allergies/AllergyCheckboxes';
 
-const Homepage = () => (
-	<div>
-		<h1>Welcome To Greenlight Menus</h1>
-		<h2>How can we assist you today?</h2>
+class Homepage extends React.Component {
+	constructor(props) {
+		super(props)
 
-		<div className="searchByRestaurant">
-			<h3>Search For Restaurant</h3>
-			<form>
-				<label htmlFor="restaurant">restaurant</label>
-				<input type="text" id="restaurant" name="restaurant" />
-				<input type="submit" value="search" />				
-			</form>
-		</div>
+		this.state = {
+			visible: false
+		}
+	}
 
-		<div className="searchByAllergies">
-			<h3>Search For Food</h3>
-			<form>
-				<label htmlFor="zip">zip</label>
-				<input type="text" id="zip" name="zip" />
-				<h4>I would like to avoid:</h4>
-				<AllergyCheckboxes />
-				<input type="submit" value="search" />				
-			</form>
-		</div>
-	</div>
-)
+	toggleVisibility = () => {
+		const opposite = !this.state.visible;
+		this.setState({visible: opposite})
+	}
+
+	render() {
+		return (	
+			<div>
+				<h1>Welcome To Greenlight Menus</h1>
+
+				<div className="searchByAllergies">
+					<h3>Search</h3>
+					<form>
+						<label htmlFor="restaurant">restaurant</label>
+						<input type="text" id="restaurant" name="restaurant" />
+						<p onClick={this.toggleVisibility}>more..</p>
+						{this.state.visible &&
+							<div className="extraSearch">
+								<label htmlFor="zip">zip</label>
+								<input type="text" id="zip" name="zip" />
+								<h4>I would like to avoid:</h4>
+								<AllergyCheckboxes />
+							</div>
+						}
+						<input type="submit" value="search" />				
+					</form>
+				</div>
+			</div>
+		)
+	}
+}
 
 export default Homepage;
