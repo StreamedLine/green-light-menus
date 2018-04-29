@@ -60,7 +60,7 @@ class ItemForm extends React.Component {
 
 		return (
 			<div className="pullLeft">
-				<h4>Add Item to Menu</h4>
+				<h4>{this.props.edit ? 'Edit' : 'Add'} Item In Menu</h4>
 				<form onSubmit={this.handleOnSubmit} >
 					<h4>{message}</h4>
 					<label htmlFor='title'>Title</label>

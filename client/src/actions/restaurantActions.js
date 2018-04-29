@@ -29,21 +29,32 @@ export function fetchFull(id) {
 	}
 }
 
-export function createRestaurant(restaurant, username) {
+export function postPutRestaurant(restaurant, usernameOrId, method) {
+	let body = {}, path = '';
+	if (method === 'POST') {
+	  body = JSON.stringify({
+			restaurant: restaurant,
+			username: usernameOrId
+	  });
+	  path = "http://localhost:3000/restaurants";
+	} else if (method === 'PUT') {
+		body = JSON.stringify({
+			restaurant: Object.assign({}, restaurant, {id: usernameOrId})
+	  });
+	  path = `http://localhost:3000/restaurants/${usernameOrId}`
+	}
+	debugger
 	return dispatch => {
-		return fetch("http://localhost:3000/restaurants", {
-			method: 'POST',
+		return fetch(path, {
+			method: method,
 			headers: {
 				"Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({
-				restaurant,
-				username
-		  })
+      body: body
     })
 		.then(res => res.json())
-		.then(json => dispatch({type: 'CREATE_RESTAURANT', payload: json}))
+		.then(json => dispatch({type: 'POST_PUT_RESTAURANT', payload: json}))
 	}
 }
 

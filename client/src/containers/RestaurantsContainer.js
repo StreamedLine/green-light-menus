@@ -2,15 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { createRestaurant } from '../actions/restaurantActions';
 import RestaurantForm from './../components/restaurants/RestaurantForm';
 import MenuForm from './../components/restaurants/MenuForm';
 import RestaurantContainer from './RestaurantContainer';
 import RestaurantList from './../components/restaurants/RestaurantsList';
 
-class RestaurantsContainer extends React.Component {
+export default class RestaurantsContainer extends React.Component {
 	render() {
-
 		return (
 			<div>
 				<Switch>
@@ -22,8 +20,8 @@ class RestaurantsContainer extends React.Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ createRestaurant }, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({ postPutRestaurant }, dispatch)
+// }
 
-export default connect(null, mapDispatchToProps)(RestaurantsContainer);
+// export default connect(null, mapDispatchToProps)(RestaurantsContainer);

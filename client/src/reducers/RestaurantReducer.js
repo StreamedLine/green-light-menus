@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
 		case 'SET_LOAD_STATUS':
 			return Object.assign({}, state, {loadingFull: action.payload})
 
-	  case 'CREATE_RESTAURANT':
+	  case 'POST_PUT_RESTAURANT':
 	  	if (action.payload.error) {
 				return handleError(state, action, 'create')
 			}	
@@ -47,7 +47,6 @@ export default (state = initialState, action) => {
 
 	  case 'POST_PUT_MENU':
 	  	var restaurant = state.cachedFullRestaurants.find( r => r.id = action.restaurant_id);
-	  	debugger
 	  	var menus = restaurant.menus.map( m => m.id == action.payload.id ? action.payload : m);
 	  	restaurant = Object.assign({}, restaurant, {menus: menus})
 	  	var restaurants = state.cachedFullRestaurants.map( r => r.id == restaurant.id ? restaurant : r);

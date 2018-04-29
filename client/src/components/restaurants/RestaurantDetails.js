@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import key from '../../private/google-key';
 import Menu from './Menu';
+
 
 export default class RestaurantDetails extends React.Component {
 	render() {
@@ -10,6 +12,14 @@ export default class RestaurantDetails extends React.Component {
 			<div className='restaurantDetails'>
 				{restaurant &&
 					<div>
+						<Link to={`/restaurants/${this.props.match.params.id}/edit`}>Edit Restaurant</Link>
+						<Link to={`/restaurants/${this.props.match.params.id}/add_menu`}>Add Menu Here</Link>		
+						
+						{this.props.loggedIn &&
+					    <div>
+						  </div>
+				  	}
+
 						<h3>{restaurant.name}</h3>
 						<p>{restaurant.description}</p>
 						<p><b>Address:</b> {restaurant.address} {restaurant.zip}</p>

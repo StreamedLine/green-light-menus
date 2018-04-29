@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser } from './actions/userActions';
-import { createRestaurant, getAllergies } from './actions/restaurantActions'
+import { postPutRestaurant, getAllergies } from './actions/restaurantActions'
 import Homepage from './components/dashboard/Homepage'
 import RestaurantForm from './components/restaurants/RestaurantForm';
 import UserLoginForm from './components/users/UserLoginForm';
@@ -35,7 +35,7 @@ class App extends Component {
               <Route path="/login" component={UserLoginForm} /> 
               <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
               <Route exact path="/about" component={BasicAbout} />
-              <Route path="/create_restaurant" component={({history}) => (<RestaurantForm {...this.props} history={history} />)} />
+              <Route path="/create_restaurant" component={({history}) => (<RestaurantForm {...this.props} submitRestaurant={this.props.postPutRestaurant} history={history} />)} />
               <Route path="/restaurants" component={RestaurantsContainer} />
             </Switch>
           </div>
@@ -51,7 +51,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, createUser, createRestaurant, getAllergies}, dispatch)
+  return bindActionCreators({fetchToken, createUser, postPutRestaurant, getAllergies}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
