@@ -6,13 +6,22 @@ import RestaurantForm from './../components/restaurants/RestaurantForm';
 import MenuForm from './../components/restaurants/MenuForm';
 import RestaurantContainer from './RestaurantContainer';
 import RestaurantList from './../components/restaurants/RestaurantsList';
+import { fetchRestaurants } from '../actions/restaurantActions';
 
-export default class RestaurantsContainer extends React.Component {
+class RestaurantsContainer extends React.Component {
+	constructor(props) {
+		super(props);
+
+		if (!props.customMode) {
+			props.fetchRestaurants();
+		}
+	}
+
 	render() {
 		return (
 			<div>
 				<Switch>
-		    	<Route exact path='/restaurants' component={RestaurantList} />
+		    	<Route exact path='/restaurants' component={() => <RestaurantList restaurants={this.props.restaurants} /> } />
         	<Route path={`/restaurants/:id`} component={RestaurantContainer} />	
 				</Switch>
 			</div>
@@ -20,8 +29,12 @@ export default class RestaurantsContainer extends React.Component {
 	}
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({ postPutRestaurant }, dispatch)
-// }
+const mapStateToProps = ({restaurantReducer, filterReducer}) => {
+  return {restaurants: restaurantReducer.restaurants, customMode: filterReducer.customMode}
+}
 
-// export default connect(null, mapDispatchToProps)(RestaurantsContainer);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchRestaurants }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsContainer);

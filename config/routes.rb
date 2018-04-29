@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   patch  '/user/:id'       => 'users#update'
   delete '/user/:id'       => 'users#destroy'
 
+
+  get '/search' => 'search#filter'
+
   #restaurant actions
   resources :restaurants, only: [:index, :show, :create, :update, :destroy] do 
     resources :menus, only: [:index, :show, :create, :destroy]
@@ -26,4 +29,6 @@ Rails.application.routes.draw do
   end
 
   resources :allergies, only: [:index]
+
+
 end
