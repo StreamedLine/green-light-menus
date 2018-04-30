@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
 			return Object.assign({}, state, {allergies: action.payload})
 
 		case 'FETCH_RESTAURANTS':
-			if (state.loadedIndex) return state;
 			return Object.assign({}, state, {restaurants: action.payload, loadedIndex: true});
 
 		case 'FETCH_FULL':

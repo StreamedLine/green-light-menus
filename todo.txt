@@ -1,7 +1,7 @@
 
 Next:
 
-* implement search in homepage
+* search not working
 * add data validations
 
 Cleanup:

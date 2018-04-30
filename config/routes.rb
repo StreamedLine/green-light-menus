@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   delete '/user/:id'       => 'users#destroy'
 
 
-  get '/search' => 'search#filter'
+  post '/search' => 'search#filter'
 
   #restaurant actions
   resources :restaurants, only: [:index, :show, :create, :update, :destroy] do 

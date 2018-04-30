@@ -1,5 +1,10 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import  { search } from '../../actions/searchActions';
+import  { setLoadIndex } from '../../actions/restaurantActions';
 import AllergyCheckboxes from '../allergies/AllergyCheckboxes';
+import RestaurantList from '../restaurants/RestaurantsList';
 
 class Homepage extends React.Component {
 	constructor(props) {
@@ -27,7 +32,7 @@ class Homepage extends React.Component {
 		const checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
 
 		const search = Object.assign({}, this.state.search, {allergies_attributes: checkedVals});
-		
+		this.props.search(search);
 	}
 
 	handleOnChange = (e) => {
@@ -57,9 +62,21 @@ class Homepage extends React.Component {
 						<input type="submit" value="search" />				
 					</form>
 				</div>
+				<div className="searchResults">
+				<h3>Search Result</h3>
+					<RestaurantList restaurants={this.props.searchResults} />
+				</div>
 			</div>
 		)
 	}
 }
 
-export default Homepage;
+const mapStateToProps = ({filterReducer}) => {
+  return {customMode: filterReducer.customMode, searchResults: filterReducer.searchResults}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ search, setLoadIndex }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

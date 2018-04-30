@@ -111,4 +111,6 @@ export function resetDone() {
 	return {type: 'RESET_DONE'}
 }
 
-
+export function setLoadIndex(status) {
+	return {type: 'SET_LOADED_INDEX', payload: status}
+}

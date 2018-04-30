@@ -7,4 +7,7 @@ class Restaurant < ApplicationRecord
 	validates :address, presence: true
 	validates :zip, presence: true
 
+	def self.search(search_params)
+		results = Restaurant.where("name LIKE '%#{search_params[:query]}%'")
+	end
 end

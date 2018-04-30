@@ -1,15 +1,16 @@
 const initialState = {
 	greenLights: [],
-	customMode: false
+	customMode: false,
+	searchResults: []
 };
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'UPDATE_GREENLIGHTS':
-			if (action.payload.length > 0) {
-				return Object.assign({}, state, {greenLights: action.payload}, {customMode: true})
-			} 
-			return Object.assign({}, state, {customMode: false})
+			return Object.assign({}, state, {greenLights: action.payload}, {customMode: true})
+
+		case 'SEARCH':
+			return Object.assign({}, state, {searchResults: action.payload})
 
 		default:
 			return state;
