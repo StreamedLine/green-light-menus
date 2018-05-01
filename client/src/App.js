@@ -8,6 +8,7 @@ import Homepage from './components/dashboard/Homepage'
 import RestaurantForm from './components/restaurants/RestaurantForm';
 import UserLoginForm from './components/users/UserLoginForm';
 import UserCreateForm from './components/users/UserCreateForm';
+import { FooterComponent } from './components/users/Footer';
 import NavLinksContainer from './containers/NavLinksContainer';
 import BasicAbout from './components/about/BasicAbout';
 import RestaurantsContainer from './containers/RestaurantsContainer';
@@ -39,7 +40,8 @@ class App extends Component {
               <Route path="/restaurants" component={RestaurantsContainer} />
             </Switch>
           </div>
-
+        
+        <FooterComponent />
         </div>
       </Router>  
     );

@@ -11,17 +11,11 @@ class Homepage extends React.Component {
 		super(props)
 
 		this.state = {
-			visible: false,
 			search: {
 				query: '',
 				zip: ''
 			}
 		}
-	}
-
-	toggleVisibility = () => {
-		const opposite = !this.state.visible;
-		this.setState({visible: opposite})
 	}
 
 	handleOnSubmit = (e) => {
@@ -46,24 +40,19 @@ class Homepage extends React.Component {
 				<h1>Welcome To Greenlight Menus</h1>
 
 				<div className="searchByAllergies">
-					<h3>Search</h3>
+					<h3 className="black">Search</h3>
 					<form onSubmit={this.handleOnSubmit}>
 						<label htmlFor="query">search</label>
 						<input type="text" id="query" name="query" onChange={this.handleOnChange} />
-						<p onClick={this.toggleVisibility}>more..</p>
-						{this.state.visible &&
-							<div className="extraSearch">
-								<label htmlFor="zip">zip</label>
-								<input type="text" id="zip" name="zip" onChange={this.handleOnChange} />
-								<h4>I can eat:</h4>
-								<AllergyCheckboxes />
-							</div>
-						}
+						<div className="extraSearch">
+							<label htmlFor="zip">zip</label>
+							<input type="text" id="zip" name="zip" placeholder='optional' onChange={this.handleOnChange} />
+						</div>
 						<input type="submit" value="search" />				
 					</form>
 				</div>
 				<div className="searchResults">
-				<h3>Search Result</h3>
+				<h3 className="black">Search Result</h3>
 					<RestaurantList restaurants={this.props.searchResults} />
 				</div>
 			</div>

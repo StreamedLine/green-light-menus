@@ -1,7 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const Input = styled.input`
+  opacity: 0;
+  display: inline-block;
+`;
+
+const Label = styled.label`
+	display: inline-block;
+	font-size: 1.25em;
+	cursor: pointer;
+	user-select: none;
+	transition: color 0.3s;
+`;
 
 class AllergyCheckboxes extends React.Component {
+	onCheck = (e) => {
+		const elInput = e.target.parentElement.getElementsByTagName('input')[0];
+		const elLabel = e.target.parentElement.getElementsByTagName('label')[0];
+		if (elInput.checked) {
+			elLabel.classList.add('green')
+			elLabel.classList.remove('red')
+		} else {
+			elLabel.classList.add('red')
+			elLabel.classList.remove('green')
+		}
+	}
+
 	render() {
 		const menu_id = this.props.menu_id || 'default';
 		const boxes = this.props.allergies.map((allergy, i) => {
@@ -12,8 +38,8 @@ class AllergyCheckboxes extends React.Component {
 
 			return (
 				<div key={i}>
-					<input type="checkbox" id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`} defaultChecked={checked} /> 
-					<label htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</label>
+					<Input type="checkbox" onChange={this.onCheck} id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`} defaultChecked={checked} /> 
+					<Label className='red' htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</Label>
 				</div>
 			)
 		});

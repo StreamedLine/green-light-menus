@@ -1,10 +1,6 @@
 
 Next:
-
-* search not working
 * add data validations
-
-Cleanup:
-* make filenames for forms consistent
-* make action names consistent (fetch/get)
-* separate things into their own components
+* make search work based on zip code
+* allow menus to be filtered by allergy
+* STYLE

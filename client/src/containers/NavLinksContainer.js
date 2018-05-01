@@ -9,7 +9,9 @@ class NavLinksContainer extends React.Component {
 	render() {
 		return (
 			<div>
-				<Link to="/"><h1>Greenlight Menus</h1></Link>
+				<div className="logo"> 
+					<Link to="/"><h1 className="green">Greenlight Menus</h1></Link>
+				</div>
 				<UserLinks loggedIn={this.props.loggedIn} logoutUser={this.props.logoutUser} />
 				<Link to="/">Home</Link>
 				<Link to="/restaurants">Restaurants</Link>

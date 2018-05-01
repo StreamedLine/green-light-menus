@@ -1,15 +1,16 @@
+body {
+  background: #3A4DF9;
+  color: white;
+}
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #0f0370;
   padding: 20px;
   color: white;
-}
-
-.App-header h1 {
-  color: green;
 }
 
 .App-title {
@@ -56,7 +57,48 @@
   list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.red {
+  color: red;
 }
+
+.green {
+  color: #23a616;
+}
+
+.black {
+  color: black;
+}
+
+form input[type=text] {
+  display: block;
+  width: 100%;
+  line-height: 1.5em;
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+form input[type=submit] {
+  margin: 0.25em;
+  display: inline-block;
+  font-size: 3em;
+  height: 2em;
+  width: 60%;
+}
+
+.restaurants {
+  display: block;
+  padding: 1em 5em;
+}
+
+.restaurant {
+  margin-bottom: 1em
+}
+
+.restaurant a {
+  color: white;
+  font-size: 1.25em;
+}
+
+
+
+

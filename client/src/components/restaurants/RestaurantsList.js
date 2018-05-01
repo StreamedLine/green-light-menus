@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRestaurants } from '../../actions/restaurantActions';
 
-
 export default class RestaurantsList extends React.Component {
 	render() {
 		const restaurants = this.props.restaurants.map(restaurant => {
@@ -17,7 +16,8 @@ export default class RestaurantsList extends React.Component {
 		});
 
 		return (
-			<div>
+			<div className="restaurants pullLeft">
+				<h1>Restaurants</h1>
 				{restaurants}
 			</div>
 		)
