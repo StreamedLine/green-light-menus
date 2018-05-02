@@ -1,7 +1,6 @@
 
 Next:
 
-* (add data validations) review data validations
 * make search work based on zip code
 * allow menus to be filtered by allergy
 * STYLE

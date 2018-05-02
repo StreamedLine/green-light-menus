@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-	position: fixed;
+	position: relative;
+	margin-top: 4em;
 	bottom: 0;
 	display: block;
 	width: 100%;

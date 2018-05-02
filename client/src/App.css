@@ -1,10 +1,18 @@
+html, body {
+  height: 100%;
+}
+
 body {
   background: #3A4DF9;
   color: white;
+  position: relative;
+  margin: 0 auto;
 }
 
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .App-header {
@@ -69,12 +77,18 @@ body {
   color: black;
 }
 
+form {
+  margin: 0 auto;
+  max-width: 470px;
+}
+
 form input[type=text] {
   display: block;
   width: 100%;
   line-height: 1.5em;
   font-size: 1em;
   border-radius: 5px;
+  max-width: 470px;
 }
 
 form input[type=submit] {
@@ -83,6 +97,7 @@ form input[type=submit] {
   font-size: 3em;
   height: 2em;
   width: 60%;
+  max-width: 280px;
 }
 
 .restaurants {
@@ -99,6 +114,9 @@ form input[type=submit] {
   font-size: 1.25em;
 }
 
+.restaurantBasicDetails a {
+  color: #b4ff00
+}
 
 
 

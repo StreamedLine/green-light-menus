@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import key from '../../private/google-key';
+import RestaurantBasicDetails from './RestaurantBasicDetails';
 import Menu from './Menu';
-
 
 export default class RestaurantDetails extends React.Component {
 	render() {
@@ -20,20 +19,7 @@ export default class RestaurantDetails extends React.Component {
 						  </div>
 				  	}
 
-						<h3>{restaurant.name}</h3>
-						<p>{restaurant.description}</p>
-						<p><b>Address:</b> {restaurant.address} {restaurant.zip}</p>
-						<p><a href={'//'+restaurant.website} target="_blank">{restaurant.website}</a></p>
-
-						<iframe
-							title="rgmap"
-						  width="600"
-						  height="450"
-						  frameBorder="0" style={{border: '4px solid grey'}}
-						  src={`https://www.google.com/maps/embed/v1/place?key=${key}
-						  						    &q=${encodeURI(restaurant.address+' '+restaurant.zip)}`} allowFullScreen>
-						  }
-						</iframe>)
+						<RestaurantBasicDetails restaurant={restaurant} />
 
 						<div className="menus">
 							<h2>Menu</h2>
