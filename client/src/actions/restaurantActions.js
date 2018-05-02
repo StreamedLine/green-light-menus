@@ -43,17 +43,20 @@ export function postPutRestaurant(restaurant, usernameOrId, method) {
 	  });
 	  path = `http://localhost:3000/restaurants/${usernameOrId}`
 	}
-	debugger
+
+	const token = window.localStorage.getItem('token');
+	
 	return dispatch => {
 		return fetch(path, {
 			method: method,
 			headers: {
 				"Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json",
+				"Authorization": `Bearer ${token}`
       },
       body: body
     })
-		.then(res => res.json())
+		.then(res => {debugger; return res.json()})
 		.then(json => dispatch({type: 'POST_PUT_RESTAURANT', payload: json}))
 	}
 }
@@ -73,13 +76,16 @@ export function postPutMenu(menu, id, method, restaurant_id) {
 	  });
 	  path = `http://localhost:3000/menus/${id}`
 	}
+
+	const token = window.localStorage.getItem('token');
 	
 	return dispatch => {
 		return fetch(path, {
 			method: method,
 			headers: {
 				"Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: body
     })
@@ -90,13 +96,15 @@ export function postPutMenu(menu, id, method, restaurant_id) {
 
 
 export function addMenuItem(menu, menu_id) {
-	console.log('hi');
+	const token = window.localStorage.getItem('token');
+
 	return dispatch => {
 		return fetch(`http://localhost:3000/menus/${menu_id}`, {
 			method: 'PATCH',
 			headers: {
 				"Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
       	menu: menu

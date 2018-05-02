@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user,  only: [:create, :update, :destroy]
+
   def index
     restaurants = Restaurant.all
     render json: restaurants, each_serializer: RestaurantIndexSerializer

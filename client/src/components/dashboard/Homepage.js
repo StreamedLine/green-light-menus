@@ -52,7 +52,7 @@ class Homepage extends React.Component {
 					</form>
 				</div>
 				<div className="searchResults">
-				<h3 className="black">Search Result</h3>
+				<h3 className="black">Search Results</h3>
 					<RestaurantList restaurants={this.props.searchResults} />
 				</div>
 			</div>

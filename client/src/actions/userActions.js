@@ -13,22 +13,24 @@ export function fetchToken({email, password}) {
 		    }
 		  })
     })
-			.then(res => { 
-				if (res.ok) 
-					return res.json() 
-				else
-				 	throw Error(res.statusText)
+		.then(res => { 
+			if (res.ok) 
+				return res.json() 
+			else
+			 	throw Error(res.statusText)
+		})
+		.then(res => {
+			fetch("http://localhost:3000/auth", {
+				headers: {
+					"Authorization": `Bearer ${res.jwt}`
+				}
 			})
-			.then(res => {
-				fetch("http://localhost:3000/auth", {
-					headers: {
-						"Authorization": `Bearer ${res.jwt}`
-					}
-				})
-					.then(response => response.json())
-					.then(json => dispatch({type: 'FETCH_TOKEN', payload: {jwt: res.jwt, username: json.username}}))
-				
-			}).catch(err => {console.log(err);return dispatch({type: 'FETCH_TOKEN', payload: {jwt: false} })} )
+			.then(response => response.json())
+			.then(json => {
+				window.localStorage.setItem('token', res.jwt);
+				dispatch({type: 'FETCH_TOKEN', payload: {jwt: res.jwt, username: json.username}});
+			})
+		}).catch(err => {console.log(err);return dispatch({type: 'FETCH_TOKEN', payload: {jwt: false} })} )
 	}
 }
 

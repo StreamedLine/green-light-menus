@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_action :authenticate_user,  only: [:create, :update, :destroy]
+  
   def index
     render json: Menu.all
   end

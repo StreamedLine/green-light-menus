@@ -17,7 +17,9 @@ export default class RestaurantsList extends React.Component {
 
 		return (
 			<div className="restaurants pullLeft">
-				<h1>Restaurants</h1>
+				{this.props.restaurants.length > 0 &&
+					<h1>Restaurants</h1>
+				}
 				{restaurants}
 			</div>
 		)
