@@ -16,6 +16,8 @@ export function fetchRestaurants() {
 
 export function fetchFull(id) {
 	return (dispatch) => {
+		const token = window.localStorage.getItem('token');
+		dispatch({type: 'FETCH_TOKEN', payload: {jwt: token}});
 		dispatch({type: 'SET_LOAD_STATUS', payload: true});
 		return fetch('http://localhost:3000/restaurants/' + id)
 			.then(res => res.json())

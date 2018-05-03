@@ -23,10 +23,9 @@ class RestaurantContainer extends React.Component {
 
 		return (
 			<div>
-				<Route path={`/restaurants/:id/add_menu`} component={(props) => <MenuForm {...props} submitMenu={this.props.postPutMenu} />} />	 
 				{this.props.loggedIn &&
 			    <div>
-						//only if logged in 
+						<Route path={`/restaurants/:id/add_menu`} component={(props) => <MenuForm {...props} submitMenu={this.props.postPutMenu} />} />	 
 				  </div>
 		  	}
 		  	

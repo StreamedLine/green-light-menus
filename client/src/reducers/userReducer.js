@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
 			}		
 
 		case 'FETCH_TOKEN':
-			const {token, username} = action.payload;
+			let {token, username} = action.payload;
+			username = username || state.username;
 			let newState = {};
 			if (action.payload.jwt) {
 				newState = {token, username, loggedIn: true, done: true, error: {on: '', msg: ''}}
