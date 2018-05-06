@@ -34,6 +34,13 @@ export function fetchToken({email, password}) {
 	}
 }
 
+export function checkLoginStatus() {
+	return dispatch=> {
+		const token = window.localStorage.getItem('token');
+		dispatch({type: 'FETCH_TOKEN', payload: {jwt: token}});
+	}
+}
+
 export function authenticateUser(token) {
 	return dispatch => {
 		if (!token) dispatch({type: 'FETCH_TOKEN', payload: {jwt: false}});

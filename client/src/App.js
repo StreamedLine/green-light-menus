@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchToken, createUser } from './actions/userActions';
+import { fetchToken, createUser, checkLoginStatus } from './actions/userActions';
 import { postPutRestaurant, getAllergies } from './actions/restaurantActions'
 import Homepage from './components/dashboard/Homepage'
 import RestaurantForm from './components/restaurants/RestaurantForm';
@@ -18,7 +18,8 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getAllergies()
+    this.props.checkLoginStatus();
+    this.props.getAllergies();
   }
 
   render() {
@@ -53,7 +54,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, createUser, postPutRestaurant, getAllergies}, dispatch)
+  return bindActionCreators({fetchToken, createUser, postPutRestaurant, getAllergies, checkLoginStatus}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
