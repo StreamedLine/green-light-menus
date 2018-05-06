@@ -6,14 +6,15 @@ const Item = styled.div`
 	text-align: left;
 	margin-left: 10px;
 	display: block;
-	position: relative
+	position: relative;
+	color: black;
 `;
 
 const Title = styled.span`
 	display: inline-block;
 	font-size: 1.2em;
 	color: #111;
-	margin: 0 30px;
+	margin-right: 30px;
 `;
 
 const GreenLights = styled.span`
@@ -23,19 +24,30 @@ const GreenLights = styled.span`
 	position: relative;
 `;
 
+const GreenLight = styled.span`
+	display: inline-block;
+	margin-left: 10px;
+	color: green;
+	text-shadow: 0 0 30px green;
+	padding: 5px;
+	border-radius: 50%;
+	text-align: center;
+`;
+
 class MenuItem extends React.Component {
 	render() {
-		const greenLights = this.props.item.allergies.map((greenLight, i)=> <span key={i}>{greenLight.name}</span>)
+		const greenLights = this.props.item.allergies.map((greenLight, i)=> <GreenLight key={i}>{greenLight.name}</GreenLight>)
 		
 		return (
 			<div>
 				<Item>
 					<hr/>
-					{false && "Allow Edit here if logged in"}
-					<Link to={`${this.props.location.pathname}/menus/${this.props.menu.id}/menu_items/${this.props.item.id}`}>edit</Link>
+					{this.props.loggedIn &&
+						<Link to={`${this.props.location.pathname}/menus/${this.props.menu.id}/menu_items/${this.props.item.id}`}>edit</Link>
+					}
 					<Title className="menuItemTitle">{this.props.item.title}</Title> 
-					{this.props.item.description} 
-					<GreenLights><em>Green Lights:</em> {greenLights}</GreenLights>
+					<GreenLights>{greenLights}</GreenLights>
+					<p>{this.props.item.description} </p>
 				</Item>
 			</div>
 		)

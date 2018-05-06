@@ -45,7 +45,7 @@ export default class RestaurantDetails extends React.Component {
 		super(props)
 
 		this.state = {
-			greenlights: props.allergies.map(a => a.name)
+			greenlights: []
 		}
 	}
 

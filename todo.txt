@@ -1,7 +1,5 @@
 
 Next:
 
-* filter menus based on allergies
 * make search work based on zip code
-* allow menus to be filtered by allergy
 * STYLE
