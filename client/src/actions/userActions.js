@@ -69,6 +69,7 @@ export function createUser({username, email, password}) {
 }
 
 export function logoutUser() {
+	window.localStorage.setItem('token', '');
 	return {type: 'LOGOUT_USER'}
 }
 

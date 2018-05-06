@@ -14,7 +14,8 @@ const Toolbar = styled.div`
 
 const MenuDiv = styled.div`
 	background: lightgrey;
-	padding:1em;
+	padding: 1em;
+	border: 4px solid black;
 `;
 
 const MenuTitle = styled.h3`
@@ -24,21 +25,23 @@ const MenuTitle = styled.h3`
 `;
 
 export default class Menu extends React.Component {
+	titleHelper = (title) => {
+		if (title.split(/ -/).reverse()[0].toLowerCase() !== 'menu') {
+			return title + ' Menu';
+		} else {
+			return title
+		}
+	}
+
 	render() {
 			const menuItems = this.props.menu.menuItems.map((item, i)=> {
-				const green = this.props.allergies.every(a => item.allergies.find(ia => ia.name == a));
-				return <MenuItem key={i} menu={this.props.menu} item={item} />
-				if (green) {
-					return <MenuItem key={i} menu={this.props.menu} item={item} />
-				} else {
-					return null
-				}
+				return this.props.greenlights.every(gl => item.allergies.find(a => a.name == gl)) ? <MenuItem key={i} menu={this.props.menu} item={item} /> : null;
 			}) 
 
 			return (
 				<MenuDiv>
 					<span id={this.props.menu.id}></span>
-					<MenuTitle>{this.props.menu.title}</MenuTitle>
+					<MenuTitle>{this.titleHelper(this.props.menu.title)}</MenuTitle>
 			
 					{this.props.loggedIn && 
 						<Toolbar className='toolbar'>

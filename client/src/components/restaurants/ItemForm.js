@@ -32,12 +32,7 @@ class ItemForm extends React.Component {
 
 		const checkboxes = e.target.querySelectorAll('input[type=checkbox]');
 		const checked = Array.from(checkboxes).filter(cb => cb.checked);
-
-		if (item_id) {
-			var checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
-		} else {
-			checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
-		}
+		const checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
 
 		const menu = {
 			id: this.props.match.params.menu_id,

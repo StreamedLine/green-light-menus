@@ -1,8 +1,6 @@
 
 Next:
 
-
-* fixbug itemform creating instead of editing accepts_nested_params might be the culprit
 * filter menus based on allergies
 * make search work based on zip code
 * allow menus to be filtered by allergy

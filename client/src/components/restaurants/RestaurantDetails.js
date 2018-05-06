@@ -50,7 +50,13 @@ export default class RestaurantDetails extends React.Component {
 	}
 
 	handleOnSubmit = (e) => {
-		//set new state
+		e.preventDefault();
+
+		const checkboxes = e.target.querySelectorAll('input[type=checkbox]');
+		const checked = Array.from(checkboxes).filter(cb => cb.checked);
+		const greenlights = checked.map(cb => cb.name.split('-').slice(0,-1).join(''));
+
+		this.setState({greenlights: greenlights})
 	}
 
 	render() {
@@ -77,15 +83,15 @@ export default class RestaurantDetails extends React.Component {
 								<MenuFilter>
 									<H4>filter Menus</H4>
 									<form onSubmit={this.handleOnSubmit}>
-										<input type="submit" value="filter"/>
 										<AllergyCheckboxes />
+										<input type="submit" value="filter"/>
 									</form>
 								</MenuFilter>
 		
 								{restaurant.menus.map((menu, i)=> <MenuLink href={'#' + menu.id}> {menu.title} </MenuLink>)}
 							</ExtendedToolbar>
 							
-							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} allergies={this.state.allergies || []} loggedIn={this.props.loggedIn} />)}
+							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} greenlights={this.state.greenlights} loggedIn={this.props.loggedIn} />)}
 						</div>
 					</div>										
 				}
