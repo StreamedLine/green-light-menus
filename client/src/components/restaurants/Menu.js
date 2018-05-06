@@ -12,17 +12,36 @@ const Toolbar = styled.div`
   border-bottom-right-radius: 10px;
 `;
 
+const MenuDiv = styled.div`
+	background: lightgrey;
+	padding:1em;
+`;
+
+const MenuTitle = styled.h3`
+	color: black;
+	font-weight: bolder;
+	font-size: 2em;
+`;
+
 export default class Menu extends React.Component {
 	render() {
-			const menuItems = this.props.menu.menuItems.map((item, i)=> <MenuItem key={i} menu={this.props.menu} item={item} />) 
+			const menuItems = this.props.menu.menuItems.map((item, i)=> {
+				const green = this.props.allergies.every(a => item.allergies.find(ia => ia.name == a));
+				return <MenuItem key={i} menu={this.props.menu} item={item} />
+				if (green) {
+					return <MenuItem key={i} menu={this.props.menu} item={item} />
+				} else {
+					return null
+				}
+			}) 
 
 			return (
-				<div className="menu">
+				<MenuDiv>
 					<span id={this.props.menu.id}></span>
-					<h3>{this.props.menu.title}</h3>
+					<MenuTitle>{this.props.menu.title}</MenuTitle>
 			
 					{this.props.loggedIn && 
-						<Toolbar>
+						<Toolbar className='toolbar'>
 							<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}`}>Add Item</Link>
 							<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}/edit`}>Edit Menu</Link>
 						</Toolbar>
@@ -31,7 +50,7 @@ export default class Menu extends React.Component {
 					<div className="menuItems">
 						{menuItems}
 					</div>
-				</div>
+				</MenuDiv>
 			)
 		}
 }

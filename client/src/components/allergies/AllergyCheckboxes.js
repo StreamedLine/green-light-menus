@@ -10,6 +10,8 @@ const Input = styled.input`
 const Label = styled.label`
 	display: inline-block;
 	font-size: 1.25em;
+	margin-left: -5px;
+	padding-left: 0;
 	cursor: pointer;
 	user-select: none;
 	transition: color 0.3s;
@@ -39,7 +41,7 @@ class AllergyCheckboxes extends React.Component {
 			return (
 				<div key={i}>
 					<Input type="checkbox" onChange={this.onCheck} id={`${allergy.name}-${this.props.menu_id}`} name={`${allergy.name}-${this.props.menu_id}`} defaultChecked={checked} /> 
-					<Label className='red' htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</Label>
+					<Label className={checked ? 'green' : 'red'} htmlFor={`${allergy.name}-${this.props.menu_id}`}>{allergy.name}</Label>
 				</div>
 			)
 		});

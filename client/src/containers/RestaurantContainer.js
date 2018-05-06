@@ -29,7 +29,7 @@ class RestaurantContainer extends React.Component {
 				  </div>
 		  	}
 		  	
-			  <Route path={`/restaurants/:id`} component={(props) => <RestaurantDetails {...props} restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />} />  
+			  <Route exact path={`/restaurants/:id`} component={(props) => <RestaurantDetails {...props} allergies={this.props.allergies} restaurant={currentRestaurant} loggedIn={this.props.loggedIn} />} />  
 			  <Route exact path='/restaurants/:id/edit' component={({history}) => (<RestaurantForm {...this.props} submitRestaurant={this.props.postPutRestaurant} history={history} edit={true} />)} />
 			  <Route exact path={'/restaurants/:id/menus/:menu_id'} component={ItemForm} />	
 			  <Route exact path={'/restaurants/:id/menus/:menu_id/edit'} component={(props) => <MenuForm {...props} submitMenu={this.props.postPutMenu} currentRestaurant={currentRestaurant} edit={true} />} />	
@@ -41,6 +41,7 @@ class RestaurantContainer extends React.Component {
 
 const mapStateToProps = ({restaurantReducer, userReducer}) => {
   return {
+  	allergies: restaurantReducer.allergies,
   	currentRestaurant: restaurantReducer.currentRestaurant,
   	cachedFullRestaurants: restaurantReducer.cachedFullRestaurants, 
   	loadingFull: restaurantReducer.loadingFull,

@@ -7,7 +7,7 @@ class MenuItem < ApplicationRecord
 
 	def allergies_attributes=(allergies_attributes)
 		allergies_attributes.each do |allergy|
-			mia = self.menuItemAllergies.new
+			mia = self.menuItemAllergies.new 
 			mia.allergy = Allergy.find_by(name: allergy[:name])
 			mia.save
 		end

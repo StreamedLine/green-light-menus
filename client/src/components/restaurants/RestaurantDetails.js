@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import RestaurantBasicDetails from './RestaurantBasicDetails';
 import Menu from './Menu';
+import AllergyCheckboxes from '../allergies/AllergyCheckboxes';
 import styled from 'styled-components';
 
 const Toolbar = styled.div`
@@ -31,7 +32,27 @@ const H3 = styled.h3`
 	color: #490647;
 `;
 
+const H4 = styled.h4`
+	margin: 0;
+`;
+
+const MenuFilter = styled.div`
+	margin-bottom: 1em;
+`;
+
 export default class RestaurantDetails extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			greenlights: props.allergies.map(a => a.name)
+		}
+	}
+
+	handleOnSubmit = (e) => {
+		//set new state
+	}
+
 	render() {
 		const restaurant = this.props.restaurant;
 
@@ -39,8 +60,6 @@ export default class RestaurantDetails extends React.Component {
 			<div className='restaurantDetails'>
 				{restaurant &&
 					<div>
-								
-						
 						{this.props.loggedIn &&
 					    <Toolbar className="toolbar">
 					    	<Link to={`/restaurants/${this.props.match.params.id}/edit`}>Edit Restaurant</Link>
@@ -54,10 +73,19 @@ export default class RestaurantDetails extends React.Component {
 							<h1>Menus</h1>
 							<ExtendedToolbar>
 								<H3>Menu List</H3>
+		
+								<MenuFilter>
+									<H4>filter Menus</H4>
+									<form onSubmit={this.handleOnSubmit}>
+										<input type="submit" value="filter"/>
+										<AllergyCheckboxes />
+									</form>
+								</MenuFilter>
+		
 								{restaurant.menus.map((menu, i)=> <MenuLink href={'#' + menu.id}> {menu.title} </MenuLink>)}
 							</ExtendedToolbar>
 							
-							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} loggedIn={this.props.loggedIn} />)}
+							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} allergies={this.state.allergies || []} loggedIn={this.props.loggedIn} />)}
 						</div>
 					</div>										
 				}

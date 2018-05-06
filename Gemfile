@@ -17,7 +17,6 @@ gem 'puma', '~> 3.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'foreman', '~> 0.82.0'

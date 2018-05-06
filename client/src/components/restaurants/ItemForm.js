@@ -28,15 +28,21 @@ class ItemForm extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
+		const item_id = this.menuItem !== false ? this.menuItem.id : false;
 
 		const checkboxes = e.target.querySelectorAll('input[type=checkbox]');
 		const checked = Array.from(checkboxes).filter(cb => cb.checked);
-		const checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
+
+		if (item_id) {
+			var checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
+		} else {
+			checkedVals = checked.map(cb => {return {name: cb.name.split('-').slice(0,-1).join('')}});
+		}
 
 		const menu = {
 			id: this.props.match.params.menu_id,
 			menuItems_attributes: [
-				Object.assign({}, this.state, {allergies_attributes: checkedVals})
+				Object.assign({}, this.state, {id: item_id}, {allergies_attributes: checkedVals}) 
 			]
 		}
 		
@@ -60,7 +66,7 @@ class ItemForm extends React.Component {
 
 		return (
 			<div className="pullLeft">
-				<h4>{this.props.edit ? 'Edit' : 'Add'} Item In Menu</h4>
+				<h4>{this.menuItem ? 'Edit' : 'Add'} Item In Menu</h4>
 				<form onSubmit={this.handleOnSubmit} >
 					<h4>{message}</h4>
 					<label htmlFor='title'>Title</label>
@@ -70,7 +76,7 @@ class ItemForm extends React.Component {
 					<div className="allergyBoxes">
 						{allergyBoxes}
 					</div>
-					<input type="submit" value="Add Item"/>
+					<input type="submit" value={`${this.menuItem ? 'Edit' : 'Add'} Item`}/>
 				</form>		
 			</div>
 		)

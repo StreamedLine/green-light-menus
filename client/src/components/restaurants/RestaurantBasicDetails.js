@@ -17,7 +17,7 @@ const RestaurantBasicDetails = ({restaurant}) => {
 			  src={`https://www.google.com/maps/embed/v1/place?key=${key}
 			  						    &q=${encodeURI(restaurant.address+' '+restaurant.zip)}`} allowFullScreen>
 			  }
-			</iframe>)
+			</iframe>
 		</div>
 	)
 }
