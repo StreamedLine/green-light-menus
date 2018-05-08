@@ -1,5 +1,6 @@
 
 Next:
 
+* make page show current info without page reload (when adding menu, and menuitem, or editing alllergies)
 * make search work based on zip code
 * STYLE

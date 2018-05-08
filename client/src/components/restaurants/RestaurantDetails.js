@@ -88,7 +88,7 @@ export default class RestaurantDetails extends React.Component {
 									</form>
 								</MenuFilter>
 		
-								{restaurant.menus.map((menu, i)=> <MenuLink href={'#' + menu.id}> {menu.title} </MenuLink>)}
+								{restaurant.menus.map((menu, i)=> <MenuLink key={i} href={'#' + menu.id}> {menu.title} </MenuLink>)}
 							</ExtendedToolbar>
 							
 							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} greenlights={this.state.greenlights} loggedIn={this.props.loggedIn} />)}

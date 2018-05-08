@@ -14,7 +14,7 @@ class MenuItem < ApplicationRecord
 		end
 		self.allergies.each do |allergy|
 			if allergies_attributes.none?{|a| a[:name] == allergy[:name]}
-				d=self.menuItemAllergies.find_by(allergy_id: allergy[:id])
+				self.menuItemAllergies.find_by(allergy_id: allergy[:id]).delete
 			end
 		end
 	end

@@ -28,6 +28,7 @@ export function fetchToken({email, password}) {
 			.then(response => response.json())
 			.then(json => {
 				window.localStorage.setItem('token', res.jwt);
+				window.localStorage.setItem('username', json.username);
 				dispatch({type: 'FETCH_TOKEN', payload: {jwt: res.jwt, username: json.username}});
 			})
 		}).catch(err => {console.log(err);return dispatch({type: 'FETCH_TOKEN', payload: {jwt: false} })} )
@@ -37,7 +38,8 @@ export function fetchToken({email, password}) {
 export function checkLoginStatus() {
 	return dispatch=> {
 		const token = window.localStorage.getItem('token');
-		dispatch({type: 'FETCH_TOKEN', payload: {jwt: token}});
+		const username = window.localStorage.getItem('username');
+		dispatch({type: 'FETCH_TOKEN', payload: {jwt: token, username: username}});
 	}
 }
 
@@ -77,6 +79,7 @@ export function createUser({username, email, password}) {
 
 export function logoutUser() {
 	window.localStorage.setItem('token', '');
+	window.localStorage.setItem('username', '');
 	return {type: 'LOGOUT_USER'}
 }
 

@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
 
 		case 'FETCH_TOKEN':
 			let {token, username} = action.payload;
-			username = username || state.username;
+			username = username || state.username || window.localStorage.getItem('username');
 			let newState = {};
 			if (action.payload.jwt) {
 				newState = {token, username, loggedIn: true, done: true, error: {on: '', msg: ''}}

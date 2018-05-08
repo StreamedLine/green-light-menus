@@ -28,7 +28,7 @@ class RestaurantForm extends React.Component {
 
 	handleOnSubmit = (e) => {
 		e.preventDefault();
-
+		
 		if (!this.props.edit) { 
 			this.props.submitRestaurant(this.state, this.props.username, 'POST');
 		} else {
@@ -47,7 +47,7 @@ class RestaurantForm extends React.Component {
 				message = this.props.err.msg;
 			}
 		}
-		console.log(this)
+
 		return (
 			<div>
 			<h3>{this.props.edit ? 'Edit' : 'Add'} Your Restaurant Below</h3>
