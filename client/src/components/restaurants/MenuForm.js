@@ -27,8 +27,8 @@ export default class MenuForm extends React.Component {
 			this.props.submitMenu(this.state, this.props.match.params.id, 'POST', this.props.match.params.id);
 			this.props.history.push(this.props.location.pathname.match(/\/.*\/\d+/)[0])
 		} else {
-			this.props.submitMenu(this.state, this.props.match.params.menu_id, 'PUT', this.props.currentRestaurant.id);
-			this.props.history.push(`/restaurants/${this.props.currentRestaurant.id}`)
+			this.props.submitMenu(this.state, this.props.match.params.menu_id, 'PUT', this.props.currentRestaurant.restaurant.id);
+			this.props.history.push(`/restaurants/${this.props.currentRestaurant.restaurant.id}`)
 		}
 	}
 
@@ -41,7 +41,7 @@ export default class MenuForm extends React.Component {
 				<form onSubmit={this.handleOnSubmit} >
 						<label htmlFor='title'>Title</label>
 						<input type="text" name='title' id='title' value={this.state.title} onChange={this.handleOnChange} />
-						<input type="submit" value="Add Menu"/>
+						<input type="submit" value={`${this.props.edit ? 'Edit' : 'Add'} Menu`}/>
 				</form>		
 			</div>
 		)

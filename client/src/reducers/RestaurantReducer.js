@@ -47,22 +47,17 @@ export default (state = initialState, action) => {
 	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant});
 
 	  case 'POST_PUT_MENU':
-	  	console.log(action)
-	  	// var restaurant = state.cachedFullRestaurants.find( r => r.id = action.restaurant_id);
-	  	// var menus = restaurant.menus.map( m => m.id == action.payload.id ? action.payload : m);
-	  	// restaurant = Object.assign({}, restaurant, {menus: menus});
-	  	// var restaurants = state.cachedFullRestaurants.map( r => r.id == restaurant.id ? restaurant : r);
 	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus: state.currentRestaurant.menus.concat(action.payload)})
 	  	return Object.assign({}, state, {currentRestaurant});
 
 	  case 'ADD_MENU_ITEM':
-	  	var currentRestaurant = state.cachedFullRestaurants.find( r => r.menus.filter( m => m.id == action.payload.id).length > 0 );
-	  	if (!currentRestaurant || action.payload.error) {
-				return handleError(state, action, 'create')
-			}	
-			//add new menu to current restaurant here
-	  	var restaurants = state.cachedFullRestaurants.map( r => r.id == currentRestaurant.id ? currentRestaurant : r);
-	  	return Object.assign({}, state, {cachedFullRestaurants: restaurants}, {done: true}, {currentRestaurant: JSON.parse(JSON.stringify(currentRestaurant))});
+			var menuItems = state.currentRestaurant.menuItems.map(mi => mi.menu_id == action.payload.id ? {menu_id: action.payload.id, menuItems: action.payload.menuItems} : mi);
+			if (!!menuItems.find(mi => mi.menu_id == action.payload.id) === false){
+			  menuItems = menuItems.concat({menu_id: action.payload.id, menuItems: action.payload.menuItems});
+			}
+			var menus = state.currentRestaurant.menus.map(m => m.id == action.payload.id ? action.payload : m);
+			var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus}, {menuItems})
+	  	return Object.assign({}, state, {done: true}, {currentRestaurant});
 
 	  case 'RESET_DONE':
 			return Object.assign({}, state, {done: false});

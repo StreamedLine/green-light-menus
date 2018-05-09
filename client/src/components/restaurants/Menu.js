@@ -34,11 +34,11 @@ export default class Menu extends React.Component {
 	}
 
 	render() {
-			const menuItems = this.props.menu.menuItems.map((item, i)=> {
+			const menuItems = this.props.menuItems.map((item, i)=> {
 				if (this.props.greenlights.count == 0) {return <MenuItem key={i} menu={this.props.menu} item={item} loggedIn={this.props.loggedIn} />}
 				return this.props.greenlights.every(gl => item.allergies.find(a => a.name == gl)) ? <MenuItem key={i} menu={this.props.menu} item={item} loggedIn={this.props.loggedIn} /> : null;
 			}) 
-
+			console.log(this.props.menuItems)
 			return (
 				<MenuDiv>
 					<span id={this.props.menu.id}></span>

@@ -14,9 +14,9 @@ class MenusController < ApplicationController
   def create
     restaurant = Restaurant.find(params[:restaurant_id])
     menu = restaurant.menus.new(menu_params) if restaurant
-
+    
     if menu.save
-      render json: menu
+      render json: menu, include: '**'
     else
       render json: {error: menu.errors.full_messages}
     end
@@ -24,9 +24,9 @@ class MenusController < ApplicationController
 
   def update
     menu = Menu.find(menu_params[:id])
-
+    
     if menu.update(menu_params)
-      render json: menu
+      render json: menu, include: '**'
     else
       render json: {error: menu.errors.full_messages}
     end

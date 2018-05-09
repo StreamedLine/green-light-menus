@@ -36,7 +36,7 @@ const GreenLight = styled.span`
 
 class MenuItem extends React.Component {
 	render() {
-		const greenLights = this.props.item.allergies.map((greenLight, i)=> <GreenLight key={i}>{greenLight.name}</GreenLight>)
+		const greenLights = (this.props.item.allergies && this.props.item.allergies.length > 0) ? this.props.item.allergies.map((greenLight, i)=> <GreenLight key={i}>{greenLight.name}</GreenLight>) : null;
 		
 		return (
 			<div>
@@ -47,7 +47,7 @@ class MenuItem extends React.Component {
 					}
 					<Title className="menuItemTitle">{this.props.item.title}</Title> 
 					<GreenLights>{greenLights}</GreenLights>
-					<p>{this.props.item.description} </p>
+					<p>{this.props.item.description}</p>
 				</Item>
 			</div>
 		)

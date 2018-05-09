@@ -56,7 +56,7 @@ export function postPutRestaurant(restaurant, usernameOrId, method) {
       },
       body: body
     })
-		.then(res => {debugger; return res.json()})
+		.then(res => {return res.json()})
 		.then(json => dispatch({type: 'POST_PUT_RESTAURANT', payload: json}))
 	}
 }
@@ -90,7 +90,7 @@ export function postPutMenu(menu, id, method, restaurant_id) {
       body: body
     })
 		.then(res => res.json())
-		.then(json => dispatch({type: `POST_PUT_MENU`, payload: json, id, restaurant_id}))
+		.then(json => dispatch({type: `POST_PUT_MENU`, payload: json}))
 	}
 }
 
@@ -111,7 +111,7 @@ export function addMenuItem(menu, menu_id) {
 		  })
     })
 			.then(res => res.json())
-			.then(json => 	dispatch({type: 'ADD_MENU_ITEM', payload: json}))
+			.then(json => {return dispatch({type: 'ADD_MENU_ITEM', payload: json})})
 	}
 }
 

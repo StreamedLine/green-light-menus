@@ -41,7 +41,7 @@ class RestaurantForm extends React.Component {
 	
 		if (this.props.done == true) {
 			this.props.resetDone();
-			this.props.history.push(`/restaurants/${this.props.currentRestaurant.id}`)
+			this.props.history.push(`/restaurants/${this.props.currentRestaurant.restaurant.id}`)
 		} else {
 			if (this.props.err && this.props.err.on == 'create') {
 				message = this.props.err.msg;

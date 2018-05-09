@@ -8,12 +8,12 @@ import AllergyCheckboxes from '../allergies/AllergyCheckboxes';
 class ItemForm extends React.Component {
 	constructor(props) {
 		super(props);
-
+		
 		this.menuItem = false;
 		//check to see if we are editing (instead of creating)
 		const {menu_item_id, menu_id} = this.props.match.params;
 		if (menu_item_id) {
-			this.menuItem = this.props.currentRestaurant.menus.find( m => m.id == menu_id ).menuItems.find( mi => mi.id == menu_item_id);
+			this.menuItem = this.props.currentRestaurant.menuItems.find( m => m.menu_id == menu_id ).menuItems.find( mi => mi.id == menu_item_id);
 		}
 
 		this.state = {
@@ -50,7 +50,7 @@ class ItemForm extends React.Component {
 		if (this.props.done == true) {
 			this.props.resetDone();
 			this.setState({title: '', description: ''});
-			this.props.history.push(`/restaurants/${this.props.currentRestaurant.id}`);
+			this.props.history.push(`/restaurants/${this.props.currentRestaurant.restaurant.id}`);
 		} else {
 			if (this.props.err && this.props.err.on == 'create') {
 				message = this.props.err.msg;

@@ -61,6 +61,11 @@ export default class RestaurantDetails extends React.Component {
 
 	render() {
 		const restaurant = this.props.restaurant;
+		const menus = restaurant.menus.map((menu, i)=> {
+			let menuItems = restaurant.menuItems.find(mi => mi.menu_id == menu.id);
+			menuItems = menuItems ? menuItems.menuItems : [];
+			return (<Menu key={i} restaurant={restaurant.restaurant} menu={menu} menuItems={menuItems} greenlights={this.state.greenlights} loggedIn={this.props.loggedIn} />)
+		});
 
 		return (
 			<div className='restaurantDetails'>
@@ -73,7 +78,7 @@ export default class RestaurantDetails extends React.Component {
 						  </Toolbar>
 				  	}
 
-						<RestaurantBasicDetails restaurant={restaurant} />
+						<RestaurantBasicDetails restaurant={restaurant.restaurant} />
 
 						<div className="menus">
 							<h1>Menus</h1>
@@ -91,7 +96,7 @@ export default class RestaurantDetails extends React.Component {
 								{restaurant.menus.map((menu, i)=> <MenuLink key={i} href={'#' + menu.id}> {menu.title} </MenuLink>)}
 							</ExtendedToolbar>
 							
-							{restaurant.menus.map((menu, i)=> <Menu key={i} restaurant={restaurant} menu={menu} greenlights={this.state.greenlights} loggedIn={this.props.loggedIn} />)}
+							{menus}
 						</div>
 					</div>										
 				}
