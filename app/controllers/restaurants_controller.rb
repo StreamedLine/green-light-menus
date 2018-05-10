@@ -24,14 +24,15 @@ class RestaurantsController < ApplicationController
 
   def update
     restaurant = Restaurant.find(restaurant_params[:id])
-    if restaurant.update(restaurant_params)
-      render json: restaurant
+    if is_restaurant_owner(restaurant.user.id) && restaurant.update(restaurant_params)
+      render json: restaurant, include: '**'
     else
       render json: {error: restaurant.errors.full_messages}
     end
   end
 
   def destroy
+    render json: {error: '!'} unless is_restaurant_owner(restaurant.user.id)
     restaurant = Restaurant.find(restaurant_params[:id])
     restaurant.destroy
     render json: {notice: "Restaurant removed."}
@@ -42,6 +43,7 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:id, :name, :description, :phone, :address, :zip, :website, :owner)
   end
+
 end
 
 

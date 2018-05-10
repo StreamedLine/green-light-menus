@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
 				return handleError(state, action, 'create');
 			}	
 			const error = {on: '', msg: ''};
-			var currentRestaurant = {restaurant: action.payload, menus: action.payload.menus, menuItems: action.payload.menus.map(menu => {return {menu_id: menu.id, menuItems: menu.menuItems}})}
+			var currentRestaurant = Object.assign({}, state.currentRestaurant, {restaurant: action.payload});
 	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant});
 
 	  case 'POST_PUT_MENU':
@@ -63,13 +63,13 @@ export default (state = initialState, action) => {
 			var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus}, {menuItems})
 	  	return Object.assign({}, state, {done: true}, {currentRestaurant});
 
-	  case 'RESTAURANT_EDITABLE':
-	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: true})
-	  	return Object.assign({}, state, {currentRestaurant})
+	  // case 'RESTAURANT_EDITABLE':
+	  // 	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: true})
+	  // 	return Object.assign({}, state, {currentRestaurant})
 
-	  case 'RESTAURANT_NOT_EDITABLE':
-	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: false})
-	  	return Object.assign({}, state, {currentRestaurant})
+	  // case 'RESTAURANT_NOT_EDITABLE':
+	  // 	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: false})
+	  // 	return Object.assign({}, state, {currentRestaurant})
 
 	  case 'RESET_DONE':
 			return Object.assign({}, state, {done: false});

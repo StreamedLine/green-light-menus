@@ -32,7 +32,7 @@ class RestaurantForm extends React.Component {
 		if (!this.props.edit) { 
 			this.props.submitRestaurant(this.state, this.props.username, 'POST');
 		} else {
-			this.props.submitRestaurant(this.state, this.props.currentRestaurant.id, 'PUT');
+			this.props.submitRestaurant(this.state, this.props.currentRestaurant.restaurant.id, 'PUT');
 		}
 	}
 

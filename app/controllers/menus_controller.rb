@@ -25,7 +25,7 @@ class MenusController < ApplicationController
   def update
     menu = Menu.find(menu_params[:id])
     
-    if menu.update(menu_params)
+    if is_restaurant_owner(menu.restaurant.user.id) && menu.update(menu_params)
       render json: menu, include: '**'
     else
       render json: {error: menu.errors.full_messages}
@@ -33,6 +33,7 @@ class MenusController < ApplicationController
   end
 
   def destroy
+    render json: {error: '!'} unless is_restaurant_owner(menu.restaurant.user.id)
     menu = Menu.find(menu_params[:id])
     menu.destroy
     render json: {notice: "menu removed."}

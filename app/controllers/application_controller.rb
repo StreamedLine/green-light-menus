@@ -8,4 +8,8 @@ class ApplicationController < ActionController::API
   def authorize_as_admin
     return_unauthorized unless !current_user.nil? && current_user.is_admin?
   end
+
+  def is_restaurant_owner(id)
+  	!current_user.nil? && current_user.id == id
+  end
 end
