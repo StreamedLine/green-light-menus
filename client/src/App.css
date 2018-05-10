@@ -29,6 +29,10 @@ body {
   font-size: large;
 }
 
+.logo h1 {
+  text-shadow: 0 0 60px limegreen;
+}
+
 .App-header a {
   margin: 5px;
   color: white;
@@ -69,6 +73,10 @@ body {
   color: red;
 }
 
+.menus .red {
+  text-shadow: 0 0 60px tomato;
+}
+
 .green {
   color: #23a616;
 }
@@ -100,14 +108,8 @@ form input[type=submit] {
   max-width: 280px;
 }
 
-.extraSearch input[type=text] {
-  max-width: 200px;
-  display: inline-block;
-  margin-bottom: 0.75em;
-}
-.extraSearch label {
-  margin-top: 1em;
-  display: block;
+.search form input[type=submit] {
+  max-width: 100px;
 }
 
 .restaurants {

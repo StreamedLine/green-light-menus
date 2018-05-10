@@ -21,10 +21,15 @@ const About = () => {
 				<h3>Which allergies can I search and sort by?</h3>
 				<p>We currently organize the menus around the following allergies</p>
 				<ul>
-					<li>Peanuts</li>
-					<li>Treenuts</li>
 					<li>Soy</li>
+					
+					<li>Treenuts</li>
+					<li>Peanuts</li>
 					<li>Gluten</li>
+					<li>Eggs</li>
+					<li>Milk</li>
+					<li>Fish</li>
+					<li>Shellfish</li>
 				</ul>
 			</Div>
 		)

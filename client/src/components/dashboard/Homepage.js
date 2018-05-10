@@ -13,7 +13,6 @@ class Homepage extends React.Component {
 		this.state = {
 			search: {
 				query: '',
-				zip: ''
 			}
 		}
 	}
@@ -39,15 +38,11 @@ class Homepage extends React.Component {
 			<div>
 				<h1>Welcome To Greenlight Menus</h1>
 
-				<div className="searchByAllergies">
+				<div className="search">
 					<h3 className="black">Search</h3>
 					<form onSubmit={this.handleOnSubmit}>
 						<label htmlFor="query">search</label>
 						<input type="text" id="query" name="query" onChange={this.handleOnChange} />
-						<div className="extraSearch">
-							<label htmlFor="zip">zip</label>
-							<input type="text" id="zip" name="zip" placeholder='optional' onChange={this.handleOnChange} />
-						</div>
 						<input type="submit" value="search" />				
 					</form>
 				</div>
