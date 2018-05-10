@@ -1,7 +1,5 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchRestaurants } from '../../actions/restaurantActions';
 import RestaurantBasicDetails from './RestaurantBasicDetails';
 import styled from 'styled-components';

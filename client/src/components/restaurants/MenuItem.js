@@ -42,12 +42,15 @@ class MenuItem extends React.Component {
 			<div>
 				<Item>
 					<hr/>
-					{this.props.loggedIn &&
-						<Link to={`${this.props.location.pathname}/menus/${this.props.menu.id}/menu_items/${this.props.item.id}`}>edit</Link>
+					{this.props.editable &&
+						<div>
+							<Link to={`${this.props.location.pathname}/menus/${this.props.menu.id}/menu_items/${this.props.item.id}`}>edit</Link>
+							<br/>
+						</div>
 					}
 					<Title className="menuItemTitle">{this.props.item.title}</Title> 
 					<GreenLights>{greenLights}</GreenLights>
-					<p>{this.props.item.description}</p>
+					<p>Description: {this.props.item.description}</p>
 				</Item>
 			</div>
 		)

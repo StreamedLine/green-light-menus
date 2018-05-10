@@ -4,7 +4,7 @@ const initialState = {
  	cachedFullRestaurants: [], 
  	loadedIndex: false, 
  	loadingFull: false, 
- 	currentRestaurant: {restaurant: {}, menus: [], menuItems: []},
+ 	currentRestaurant: {restaurant: {}, menus: [], menuItems: [], editable: false},
  	done: false, 
  	error: {on: '', msg: ''}
 };
@@ -32,7 +32,10 @@ export default (state = initialState, action) => {
 			} else {
 				cachedFullRestaurants.push(action.payload);
 			}
-			var currentRestaurant = {restaurant: action.payload, menus: action.payload.menus, menuItems: action.payload.menus.map(menu => {return {menu_id: menu.id, menuItems: menu.menuItems}})}
+			var currentRestaurant = {restaurant: action.payload, 
+															 menus: action.payload.menus, 
+															 menuItems: action.payload.menus.map(menu => {return {menu_id: menu.id, menuItems: menu.menuItems}}),
+															 editable: action.payload.user.username === window.localStorage.getItem('username')}
 			return Object.assign({}, state, {cachedFullRestaurants}, {currentRestaurant});
 
 		case 'SET_LOAD_STATUS':
@@ -47,7 +50,8 @@ export default (state = initialState, action) => {
 	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant});
 
 	  case 'POST_PUT_MENU':
-	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus: state.currentRestaurant.menus.concat(action.payload)})
+	  	var menus = state.currentRestaurant.menus.map(m => m.id == action.payload.id ? action.payload : m);
+	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus});
 	  	return Object.assign({}, state, {currentRestaurant});
 
 	  case 'ADD_MENU_ITEM':
@@ -58,6 +62,14 @@ export default (state = initialState, action) => {
 			var menus = state.currentRestaurant.menus.map(m => m.id == action.payload.id ? action.payload : m);
 			var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus}, {menuItems})
 	  	return Object.assign({}, state, {done: true}, {currentRestaurant});
+
+	  case 'RESTAURANT_EDITABLE':
+	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: true})
+	  	return Object.assign({}, state, {currentRestaurant})
+
+	  case 'RESTAURANT_NOT_EDITABLE':
+	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {editable: false})
+	  	return Object.assign({}, state, {currentRestaurant})
 
 	  case 'RESET_DONE':
 			return Object.assign({}, state, {done: false});

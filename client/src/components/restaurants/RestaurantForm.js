@@ -9,7 +9,7 @@ class RestaurantForm extends React.Component {
 
 		let currentVals = {};
 		if (props.edit) {
-			currentVals = {...props.currentRestaurant};
+			currentVals = {...props.currentRestaurant.restaurant};
 		}
 
 		this.state = {

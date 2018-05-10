@@ -8,7 +8,7 @@ export default class MenuForm extends React.Component {
 		var currentTitle = false;
 		//if it's an edit form (instead of create)
 		if (props.edit) {
-			let currentMenu = props.currentRestaurant.menus.find( m => m.id == props.match.params.menu_id)
+			let currentMenu = props.currentRestaurant.menus.find( m => m.id === Number(props.match.params.menu_id) );
 			currentTitle = currentMenu ? currentMenu.title : false;
 		}
 
@@ -36,7 +36,7 @@ export default class MenuForm extends React.Component {
 		console.log(this)
 		return (
 			<div className="pullLeft">
-				<h4>{this.props.edit ? 'Edit' : 'Add'} New Menu Here</h4>
+				<h4>{this.props.edit ? 'Edit' : 'Add'} Menu</h4>
 				<p>Example: Breakfast Menu</p>
 				<form onSubmit={this.handleOnSubmit} >
 						<label htmlFor='title'>Title</label>

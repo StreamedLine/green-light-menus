@@ -45,6 +45,9 @@ export function checkLoginStatus() {
 
 export function authenticateUser(token) {
 	return dispatch => {
+		const token = window.localStorage.getItem('token');
+		const username = window.localStorage.getItem('username');
+		dispatch({type: 'FETCH_TOKEN', payload: {jwt: token, username: username}});
 		if (!token) dispatch({type: 'FETCH_TOKEN', payload: {jwt: false}});
 		fetch("http://localhost:3000/auth", {
 			headers: {

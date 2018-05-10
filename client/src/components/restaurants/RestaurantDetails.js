@@ -61,17 +61,18 @@ export default class RestaurantDetails extends React.Component {
 
 	render() {
 		const restaurant = this.props.restaurant;
+		const editable = this.props.loggedIn && this.props.restaurant.editable;
 		const menus = restaurant.menus.map((menu, i)=> {
 			let menuItems = restaurant.menuItems.find(mi => mi.menu_id == menu.id);
 			menuItems = menuItems ? menuItems.menuItems : [];
-			return (<Menu key={i} restaurant={restaurant.restaurant} menu={menu} menuItems={menuItems} greenlights={this.state.greenlights} loggedIn={this.props.loggedIn} />)
+			return (<Menu key={i} restaurant={restaurant.restaurant} menu={menu} menuItems={menuItems} greenlights={this.state.greenlights} editable={editable} />)
 		});
 
 		return (
 			<div className='restaurantDetails'>
 				{restaurant &&
 					<div>
-						{this.props.loggedIn &&
+						{editable &&
 					    <Toolbar className="toolbar">
 					    	<Link to={`/restaurants/${this.props.match.params.id}/edit`}>Edit Restaurant</Link>
 								<Link to={`/restaurants/${this.props.match.params.id}/add_menu`}>Add Menu Here</Link>

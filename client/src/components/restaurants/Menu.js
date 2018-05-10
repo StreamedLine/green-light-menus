@@ -34,17 +34,18 @@ export default class Menu extends React.Component {
 	}
 
 	render() {
+			const {editable} = this.props;
 			const menuItems = this.props.menuItems.map((item, i)=> {
-				if (this.props.greenlights.count == 0) {return <MenuItem key={i} menu={this.props.menu} item={item} loggedIn={this.props.loggedIn} />}
-				return this.props.greenlights.every(gl => item.allergies.find(a => a.name == gl)) ? <MenuItem key={i} menu={this.props.menu} item={item} loggedIn={this.props.loggedIn} /> : null;
+				if (this.props.greenlights.count == 0) {return <MenuItem key={i} menu={this.props.menu} item={item} editable={editable} />}
+				return this.props.greenlights.every(gl => item.allergies.find(a => a.name == gl)) ? <MenuItem key={i} menu={this.props.menu} item={item} editable={editable} /> : null;
 			}) 
-			console.log(this.props.menuItems)
+
 			return (
 				<MenuDiv>
 					<span id={this.props.menu.id}></span>
 					<MenuTitle>{this.titleHelper(this.props.menu.title)}</MenuTitle>
 			
-					{this.props.loggedIn && 
+					{editable &&
 						<Toolbar className='toolbar'>
 							<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}`}>Add Item</Link>
 							<Link to={`/restaurants/${this.props.restaurant.id}/menus/${this.props.menu.id}/edit`}>Edit Menu</Link>
