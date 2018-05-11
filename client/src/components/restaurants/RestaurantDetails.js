@@ -38,6 +38,7 @@ const H4 = styled.h4`
 
 const MenuFilter = styled.div`
 	margin-bottom: 1em;
+	font-size: 0.8em;
 `;
 
 export default class RestaurantDetails extends React.Component {

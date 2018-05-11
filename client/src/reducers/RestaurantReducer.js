@@ -51,6 +51,9 @@ export default (state = initialState, action) => {
 
 	  case 'POST_PUT_MENU':
 	  	var menus = state.currentRestaurant.menus.map(m => m.id == action.payload.id ? action.payload : m);
+	  	if (!menus.find(m => m.id == action.payload.id)) {
+	  		menus = menus.concat(action.payload);
+	  	}
 	  	var currentRestaurant = Object.assign({}, state.currentRestaurant, {menus});
 	  	return Object.assign({}, state, {currentRestaurant});
 

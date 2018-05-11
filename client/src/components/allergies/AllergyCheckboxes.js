@@ -2,9 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+const Div = styled.div`
+	margin-top: 5px;
+  padding: 10px;
+  background-color: lightgrey;
+  text-align: center;
+`;
+
 const Input = styled.input`
   opacity: 0;
-  display: inline-block;
+  position: absolute;
 `;
 
 const Label = styled.label`
@@ -47,7 +54,7 @@ class AllergyCheckboxes extends React.Component {
 		});
 		
 		return (
-			<div>{boxes}</div>
+			<Div>{boxes}</Div>
 		)
 	}
 }

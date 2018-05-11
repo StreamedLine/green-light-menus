@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-  background: #3A4DF9;
+  background: #109f9f;
   color: white;
   position: relative;
   margin: 0 auto;
@@ -100,12 +100,13 @@ form input[type=text] {
 }
 
 form input[type=submit] {
-  margin: 0.25em;
+  margin: 0.25em auto;
   display: inline-block;
   font-size: 3em;
   height: 2em;
   width: 60%;
   max-width: 280px;
+
 }
 
 .search form input[type=submit] {

@@ -1,6 +1,0 @@
-
-Next:
-
-* edit pages should display info
-* remove search based on zip code
-* STYLE
