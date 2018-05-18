@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
 	  	if (action.payload.error) {
 				return handleError(state, action, 'create');
 			}	
-			const error = {on: '', msg: ''};
+			var error = {on: '', msg: ''};
 			const ap = action.payload;
 			var currentRestaurant = Object.assign({}, state.currentRestaurant, {restaurant: ap});
 			let shallowRestaurant = {id: ap.id, description: ap.description, address: ap.address, zip: ap.zip, website: ap.website}
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
 	  	if (action.payload.error) {
 				return handleError(state, action, 'create');
 			}	
-			const error = {on: '', msg: ''};
+			var error = {on: '', msg: ''};
 			var currentRestaurant = Object.assign({}, state.currentRestaurant, {restaurant: action.payload});
 			var ap = action.payload;
 			let shallowRestaurant = {id: ap.id, description: ap.description, address: ap.address, zip: ap.zip, website: ap.website}

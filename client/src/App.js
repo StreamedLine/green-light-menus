@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser, checkLoginStatus } from './actions/userActions';
-import { postRestaurant, putRestaurant getAllergies } from './actions/restaurantActions'
+import { postRestaurant, putRestaurant, postRestaurant, getAllergies } from './actions/restaurantActions'
 import Homepage from './components/dashboard/Homepage'
 import RestaurantForm from './components/restaurants/RestaurantForm';
 import UserLoginForm from './components/users/UserLoginForm';
