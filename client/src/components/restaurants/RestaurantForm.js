@@ -30,9 +30,9 @@ class RestaurantForm extends React.Component {
 		e.preventDefault();
 		
 		if (!this.props.edit) { 
-			this.props.submitRestaurant(this.state, this.props.username, 'POST');
+			this.props.putRestaurant(this.state, this.props.username, 'POST');
 		} else {
-			this.props.submitRestaurant(this.state, this.props.currentRestaurant.restaurant.id, 'PUT');
+			this.props.postRestaurant(this.state, this.props.currentRestaurant.restaurant.id, 'PUT');
 		}
 	}
 

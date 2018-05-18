@@ -41,13 +41,29 @@ export default (state = initialState, action) => {
 		case 'SET_LOAD_STATUS':
 			return Object.assign({}, state, {loadingFull: action.payload});
 
-	  case 'POST_PUT_RESTAURANT':
+	  case 'PUT_RESTAURANT':
+	  	if (action.payload.error) {
+				return handleError(state, action, 'create');
+			}	
+			const error = {on: '', msg: ''};
+			const ap = action.payload;
+			var currentRestaurant = Object.assign({}, state.currentRestaurant, {restaurant: ap});
+			let shallowRestaurant = {id: ap.id, description: ap.description, address: ap.address, zip: ap.zip, website: ap.website}
+			let restaurants = state.restaurants.filter(r => r.id != ap.id);
+			var cachedFullRestaurants = state.cachedFullRestaurants.filter(r => r.id != ap.id);
+	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: restaurants.concat(ap), cachedFullRestaurants: cachedFullRestaurants.concat(ap)}, {currentRestaurant});
+
+	  case 'POST_RESTAURANT':
 	  	if (action.payload.error) {
 				return handleError(state, action, 'create');
 			}	
 			const error = {on: '', msg: ''};
 			var currentRestaurant = Object.assign({}, state.currentRestaurant, {restaurant: action.payload});
-	  	return Object.assign({}, state, {error}, {done: true}, {restaurants: state.restaurants.concat(action.payload), cachedFullRestaurants: state.cachedFullRestaurants.concat(action.payload)}, {currentRestaurant});
+			var ap = action.payload;
+			let shallowRestaurant = {id: ap.id, description: ap.description, address: ap.address, zip: ap.zip, website: ap.website}
+			let restaurants = state.restaurants.concat(shallowRestaurant);
+			var cachedFullRestaurants = state.cachedFullRestaurants.concat(action.payload)
+	  	return Object.assign({}, state, {error}, {done: true}, {restaurants, cachedFullRestaurants}, {currentRestaurant});
 
 	  case 'POST_PUT_MENU':
 	  	var menus = state.currentRestaurant.menus.map(m => m.id == action.payload.id ? action.payload : m);

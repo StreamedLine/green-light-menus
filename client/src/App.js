@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchToken, createUser, checkLoginStatus } from './actions/userActions';
-import { postPutRestaurant, getAllergies } from './actions/restaurantActions'
+import { postRestaurant, putRestaurant getAllergies } from './actions/restaurantActions'
 import Homepage from './components/dashboard/Homepage'
 import RestaurantForm from './components/restaurants/RestaurantForm';
 import UserLoginForm from './components/users/UserLoginForm';
@@ -20,6 +20,7 @@ class App extends Component {
   componentDidMount() {
     this.props.checkLoginStatus();
     this.props.getAllergies();
+    //play around with calling both of these api endpoints in one action and using Promise.all([fetch1, fetch2]) to wait for both responses
   }
 
   render() {
@@ -37,7 +38,7 @@ class App extends Component {
               <Route path="/login" component={UserLoginForm} /> 
               <Route path="/logout" render={() => (<h3>successfully logged out</h3>)} />
               <Route exact path="/about" component={BasicAbout} />
-              <Route path="/create_restaurant" component={({history}) => (<RestaurantForm {...this.props} submitRestaurant={this.props.postPutRestaurant} history={history} />)} />
+              <Route path="/create_restaurant" component={({history}) => (<RestaurantForm {...this.props} postRestaurant={this.props.postRestaurant} putRestaurant={this.props.putRestaurant} history={history} />)} />
               <Route path="/restaurants" component={RestaurantsContainer} />
             </Switch>
           </div>
@@ -54,7 +55,7 @@ const mapStateToProps = ({userReducer}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchToken, createUser, postPutRestaurant, getAllergies, checkLoginStatus}, dispatch)
+  return bindActionCreators({fetchToken, createUser, postRestaurant, putRestaurant, getAllergies, checkLoginStatus}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

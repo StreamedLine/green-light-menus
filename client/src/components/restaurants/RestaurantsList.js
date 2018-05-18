@@ -23,6 +23,7 @@ const StyledSpan = styled.span`
 	cursor: pointer
 `;
 
+
 export default class RestaurantsList extends React.Component {
 	constructor() {
 		super();
